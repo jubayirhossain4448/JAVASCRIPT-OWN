@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Form</title>
+</head>
+
+<body>
+<div style="width:500px; margin:0 auto; background:#666">
+<form action="display.html" style="padding:7px;">
+<label>Name</label>
+<input type="text" name="fullName" placeholder="Enter Full Name"><br/>
+<label>Gender</label>
+<input type="radio" name="gender" value="male">Male
+<input type="radio" name="gender" value="female">Female
+<br/>
+<label>Round</label>
+<select>
+<option>Round-32</option>
+<option>Round-33</option>
+<option>Round-34</option>
+<option>Round-35</option>
+<option>Round-36</option>
+<option>Round-37</option>
+<option>Round-38</option>
+<option>Round-39</option>
+</select><br/>
+<label>Computer Subject</label>
+<input type="radio" name="checkbox" vale="html">HTML
+<input type="radio" name="checkbox" vale="html">PPT
+<input type="radio" name="checkbox" vale="html">JavaScript
+<br/><br/><br/>
+<input type="submit" value="send" onsubmit="sendFormData">
+<input type="clear" value="clear">
+</form>
+</div>
+<script>
+function sendFormData(){
+	var value1="value1";
+	var value2="value2";
+	var value3="value3";
+	var value4="value4";
+	var value5="value5";
+	var queryString="?para1=" + value1 + "&para2= " + value2 + "&para3= " + value3 + "&para4= " + value4 + "&para5= " + value5;
+    window.location.href = "display.html" + queryString;
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Form</title>
+</head>
+
+<body>
+<div style="background-color:#999">
+<form action="display.html" style="padding:6px">
+<label>User Name</label>
+<input type="text" name="userName" placeholder="Enter User Name" required><br/>
+<label>Full Name</label>
+<input type="text" name="fullName" placeholder="Enter Full Name" required><br/>
+<label>Password</label>
+<input type="password" name="password" placeholder="Enter Your Password" required><br/>
+<label>Re-Type Password</label>
+<input type="password" name="password" placeholder="Re-Type Your Password" required><br/>
+<label>Gender</label>
+<input type="radio" name="gender" value="male">Male
+<input type="radio" name="gender" value="female">Female<br/>
+<label>Round</label>
+<select>
+<option>Select Your Round</option>
+<option>Round-32</option>
+<option>Round-33</option>
+<option>Round-34</option>
+<option>Round-35</option>
+<option>Round-36</option>
+<option>Round-37</option>
+<option>Round-38</option>
+<option>Round-39</option>
+</select>
+<br/>
+<label>Completed Subject</label>
+<input type="checkbox" name="checkbox" value="ppt">PPT
+<input type="checkbox" name="checkbox" value="html">HTML
+<input type="checkbox" name="checkbox" value="javascript">JavaScript<br/>
+<label>Comment</label>
+<textarea></textarea>
+<br/><br/><br/>
+<input type="reset" value="reset"/>
+<input type="submit" value="send" onsubmit="sendFormData"/>
+</form>
+</div>
+<script>
+function sendFormData(){
+	var value1 = "value1";
+	var value2 = "value2";
+	var value3 = "value3";
+	var value4 = "value4";
+	var value5 = "value5";
+	var value6 = "value6";
+	var value7 = "value7";
+	var value8 = "value8";
+	var queryString ="?para1 = " + value1 + "&para2 = " + value2 + "&para3 = " + value3 + "&para4 = " + value4 + "&para5 = " + value5 + "&para6 = " + value6 + "&para7 = " + value7 + "&para8 = " + value8;
+	window.location.href="display.html" + queryString;
+}
+</script>
+</body>
+</html>

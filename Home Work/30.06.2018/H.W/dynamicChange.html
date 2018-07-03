@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Dynamic Change</title>
+<script>
+	function showcolor(){
+		var doc =open ("", "colorform")
+		var fcolor1 = parent.frames[0].docment.forms[0].elements[0].value;
+		var fcolor2 = parent.frames[0].docment.forms[0].elements[1].value;
+		doc.document.write('<body bgcolor =#dddddd>');
+		doc.document.write('<center>');
+		doc.document.write('<h3>');		
+		doc.document.write('<font size = +3 color ="' + fcolor1 + '">');
+		doc.document.write("J");
+		doc.document.write('</font>');
+		doc.document.write('font color = "' + fcolor2 + '">');
+		doc.document.write("ava");
+		doc.document.write('</font>');
+		doc.document.write('<font size = +3 color = "' + fcolor1 + '">');
+		doc.document.write("S");
+		doc.document.write('</font>');
+		doc.document.write('<font color="' + fcolor2 +'">');
+		doc.document.write("cript</h3>");
+		doc.document.write('</font><p>');
+		doc.document.write('</center>');
+		doc.document.write('</body>');
+		doc.document.close();
+		}
+</script>
+</head>
+<body>
+<center>
+<form>
+<p class="header">Interactive Font Color Change</p>
+<div class="label">Text Color 1 &nbsp;&nbsp;<input type="text" size="15" name="name">
+<br/>
+Text Color 2&nbsp;&nbsp;<input type="text" size="15" name="name">
+</div>
+<p>
+<input type="button" value="Color Fonts" onClick="showcolor">
+</form>
+</center>
+</body>
+</html>

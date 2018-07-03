@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Building Objects</title>
+<style type="text/css">
+h2{
+	font-size: 16pt;
+	color: #584095;
+	font-family: verdana
+	}
+	h3{
+		font-size: 14pt;
+		color: #6b8cc1;
+		background-color: black;
+		font-family: verdana
+		}
+</style>
+<script>
+var acme= new Object();
+acme.management ="Management coordinates everything;"//Part of the acme object.
+acme.management = new Object();//Creating new object
+acme.management.rand = "Research and Development works to develop new and better products and services.";
+acme.finance = "Finance keeps track of the money.";
+acme.production = "Production makes the stuff.";
+acme.marketing = "Marketing develops strategies to target markets for the products.";
+acme.marketing = new Object();
+acme.marketing.sales = "Sales contacts potential clients and sells the product.";
+acme.fulfillment ="Fulfillment delivers sold products.";
+var display = "<h2>First the properties of the acme object</h2>";
+for (var counter in acme){
+	display += counter + "<br/>";
+	}
+	display += "<h3>And now the values of the properties of management and marketing</h3>";
+	display += acme.management.rand + "<br/>";
+	display += acme.marketing.sales;
+	document.write(display);
+</script>
+</head>
+<body bgcolor="#abc241">
+</body>
+</html>

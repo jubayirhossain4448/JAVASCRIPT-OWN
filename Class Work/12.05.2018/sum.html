@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+</head>
+
+<body>
+<script>
+<h2>Using different loops</h2>
+var sum = 0;
+var startingNumber = 1;
+var endingNumber = 10;
+while(startingNumber <= endingNumber) {
+	sum += startingNumber;
+	startingNumber++;
+	}
+	document.write("sum using while Loop: " + sum);
+	document.write("<hr/>");
+	
+	var sum2 = 0;
+	var sn = 1;
+	var en = 10;
+	for (sn; sn <= en; sn++){
+		sum2 += sn;
+		}
+		document.write("Sum using For Loop: " + sum2);
+		document.write("<hr/>");
+</script>
+</body>
+</html>

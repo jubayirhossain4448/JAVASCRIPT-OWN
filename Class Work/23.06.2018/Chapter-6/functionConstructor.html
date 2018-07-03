@@ -1,0 +1,14 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Function constructor</title>
+<script>
+var total=new Function("item", "tax", "return item +=tax");
+document.write("Your bill is $" + total(14.43,.06));
+</script>
+</head>
+
+<body bgcolor="thistle">
+</body>
+</html>

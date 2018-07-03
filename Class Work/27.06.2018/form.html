@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Form</title>
+</head>
+<body bgcolor="#666666">
+<form action="display.html" style="padding:7px">
+<label>User Name:</label>
+<input type="text" name="userName" placeholder="Enter User Name"><br/><br/>
+<label>Full Name:</label>
+<input type="text" name="fullName" placeholder="Enter Full Name"><br/><br/><br/>
+<label>Gender:</label>
+<input type="radio" name="gender" value="male">Male
+<input type="radio" name="gender" value="female">Female<br/><br/><br/>
+<label>Password:</label>
+<input type="password" name="password" placeholder="Type Password" required><br/><br/><br/>
+<label>Re-type Password:</label>
+<input type="password" name="password" placeholder="Re-Type Password" required><br/><br/><br/>
+<label>Language:</label>
+<select>
+<option>Select Your language</option>
+<option>Bangla</option>
+<option>Englash</option>
+<option>Arabic</option>
+<option>Japanise</option>
+</select><br/>
+<label style="vertical-align:top;">Comment:</label>
+<textarea rows="3" name="comment"></textarea><br/>
+<br/><br/></br>
+<input type="reset"  value="Reset" />
+<input type="submit"  value="Send" onSubmit="sendFormData()"/>
+</form>
+ <script>
+function sendFormData() {
+var value1 = "value1";
+var value2 = "value2";
+var value3 = "value3";
+var value4 = "value4";
+var value5 = "value5";
+var value6 = "value6";
+var value7 = "value7";
+var queryString = "?para1= " + value1 + "&para2= " + value2 + "&para3= " + value3 + "&para4= " + value4 + "&para5= " + value5 + "&para6= " + value6 + "&para7= " + value7;
+window.location.href = "display.html" + queryString;
+}
+</script> 
+</body>
+</html>
