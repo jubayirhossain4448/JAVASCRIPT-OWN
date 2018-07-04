@@ -6,7 +6,7 @@
 </head>
 <body>
 <div>
-<form action="display.html" style="padding:6px">
+<form action="form.html" style="padding:6px" onSubmit="return sendFormData()">
 <label>ID:</label>
 <input type="number" name="id" placeholder="Enter ID Number"><br>
 <label>Name:</label>
@@ -35,6 +35,15 @@
 <input type="reset" value="reset">
 </form>
 </div>
+<script>
+function sendFormData(){
+	var a = name;
+	if(a == ""){
+		alert("Please Enter Your Full Name");
+		return false;
+		}
+	}
+</script>
 <script>
 function sendFormData() {
 var value1 = "value1";
