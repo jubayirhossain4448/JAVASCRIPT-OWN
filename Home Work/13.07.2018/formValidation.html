@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Form Validation</title>
+<style>{
+	color:#9CF;
+	padding:5px 15px;
+	}
+
+</style>
+</head>
+
+<body>
+<div style="background-color:#F9F; padding:20px 25px;">
+<form action="formValidation.html" name="myForm" onSubmit="return validationForm()" method="post">
+Name: <input type="text" name="fname"><label id="fnamex"></label><br/>
+Gender: <input type="radio" name="gender"  value="male">Male
+			<input type="radio" name="gender" value="female">Female<br/>
+Education: <input type="checkbox" name="ssc"  value="ssc"/>SSC
+				<input type="checkbox" name="hsc" value="hsc">HSC<br/>
+Round:<select name="round">
+<option value="Select A Round" selected="selected">Select A Round</option>
+<option value="Round 36">Round-36</option>
+<option value="Round 37">Round-37</option>
+<option value="Round 38">Round-38</option>
+</select>
+<label id="rouund"></label><br/>
+Message:<textarea rows="5" cols="20" name="msg" placeholder="Enter at least 10 Characters"></textarea>
+<label id="msg"></label><br/>
+<input type="reset" value="Reset">
+<input type="submit" value="Submit">             
+</form>
+<script>
+function validateForm(){
+	var fname = document.forms["myForm"] ["fname"].value;
+	var gender = document.forms["myForm"] ["gender"].value;
+	var education =  " ";
+	var round = document.forms["myForm"] ["round"].value;
+	var msg = document.forms["fyForm"] ["msg"].value;
+	if (fname == " "){
+		document.getElementById(' fnamex').innerHTML ="Name must be filled out";
+		return false;
+		} else if (fname.length <3) {
+			document.getElementById('fnamex').innerHTML = "Name length at least 3 Character";
+			return false;
+			} else if (gender == " ") {
+				document.getElementById(' gender').innerHTML = "Tell me Your gender";
+				return false;
+				}	else if 
+					(!document.forms["myForm"].ssc.checked && !document.forms["myForm"].hsc.checked){
+						return false;
+						}else if (round == "Select A Round"){
+							document.getElementById('round').innerHTML = "Select Your Round";
+							return false;
+							}else if (msg.length<10){
+								document.getElementById('msg').innerHTML = " At least 10 characters";
+								return false;
+								}else {
+									document.write("Name: " + fname + "<br/>");
+									document.write("Gender: " + gender + "<br/>");
+									document.write("Education: " + education + "<br/>");
+									document.write("round: " + round + "<br/>");
+									document.write("Message: " + msg + "<br/>");
+									}
+					}
+	
+</script>
+</div>
+</body>
+</html>

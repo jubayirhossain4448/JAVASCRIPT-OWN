@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Form Validation</title>
+<style>{
+	color: red;
+	padding:3px 10px;
+	}
+</style>
+</head>
+
+<body>
+<div>
+<form name="myForm" action="formValidation.html" onSubmit="return ValidateForm()" method="post">
+Name: <input type="text" name="fname"><label id="fnamex"></label><br/>
+Gender:<input type="radio" name="gender" value="male">Male
+				<input type="radio" name="gender" value="female">Female<br/>
+  Education: <input type="checkbox" name="ssc" value="ssc">SSC
+  					<input type="checkbox" name="hsc" value="hsc">HSC<br/>
+   Round:<select name="round">
+   <option value="Select A Round Name" selected="selected">Select A Round</option>
+   <option value="Round 36">Round-36</option>
+   <option value="Round 37">Round-37</option>
+   <option value="Round 38">Round-38</option>
+   </select>
+   <label id="round"></label><br/>
+   <textarea cols="10" rows="3" name="msg" placeholder="Enter At least 10 character"></textarea>
+   <label id="msg"></label><br/>
+   <input type="submit" value="submit">
+   <input type="reset" value="Reset">
+</form>
+<script>
+function validateForm(){
+	var fname = document.forms["myForm"] ["fname"].value;
+	var gender = document.forms["myForm"] ["fgender"].value;
+	var education= " ";
+	var round = document.forms["myForm"] ["round"].value;
+	var msg = document.forms["myForm"] ["msg"].value;
+	if (fname == " "){
+		document.getElementById('fnamex').innerHTML = "Name must be filled out";
+		return false;
+		}else if (fname.length<3){
+			document.getElementById('fnamex').innerHTML = "Name Length at least 3 Character";
+			}
+	}
+</script>
+</div>
+</body>
+</html>
