@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Form Validation</title>
+</head>
+
+<body>
+<h1>Form Validation</h1>
+<form name="myForm" action="formValidation.html" onSubmit="return ValidateForm()" method="post">
+Name:<input type="text" name="fnamex"><label id="fnamex"></label><br/>
+Gender:<input type="radio" name="gender" value="male">Male
+<input type="radio" name="gender" value="female">Female
+<label id="gender"></label><br/>
+Education:<input type="checkbox" name="ssc" value="ssc">SSC
+<input type="checkbox" name="hsc" value="hsc">HSC
+<label id="education"></label><br/>
+Round: <select value="Select A Round Name" selected="selected">
+<option value="Select A round Name">Round</option>
+<option value="Round 36">Round-36</option>
+<option value="Round 37">Round-37</option>
+<option value="Round 38">Round-38</option>
+</select>
+<label id="round"></label><br/>
+Message:<textarea rows="3" cols="10" placeholder="Enter at least 10 Character"></textarea>
+<label id="msg"></label><br/>
+<input type="reset" value="reset">
+<input type="submit" value="Submit">
+</form>
+<script>
+function validateForm(){
+	var fname = document.forms["myForm"] ['fnamex'].value;
+	var gender = document.forms["myForm"] ['fnamex'].value;
+	var education = " ";
+	if (document.forms["myForm"].ssc.checked){
+		education += "," + document.["myForm"]['ssc'],value;
+		}
+	var round = document.forms["myForm"] ['round'].value;
+	var msg = document.forms["myForm"] ['msg'].value;
+	}
+</script>
+</body>
+</html>
