@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Form Validation</title>
+</head>
+
+<body>
+<div style="width:600px; height:500px; margin:3px auto; background-color:#F0F;">
+<form name="myForm" action="formValidation.html" onSubmit="return validateForm()" method="post">
+Name: <input type="text" name="fname"><label id="fname"></label><br/>
+Gender: <input type="radio" name="gender" value="male">Male
+	<input type="radio" name="gender" value="female">Female<br/>
+Education: <input type="checkbox" name="education" value="ssc">SSC
+	 <input type="checkbox" name="education" value="hsc">HSC
+     <label id="education"></label><br/>
+Round:<select name="Round">
+<option value="Select A Round" selected="selected">Select A Round</option>
+<option value="Round 36">Round-36</option>
+<option value="Round 37">Round-37</option>
+<option value="Round 38">Round-38</option>
+</select>
+<label id="round"></label><br/>
+Message:<textarea rows="10" cols="20" name="msg" placeholder="Enter your Comment"></textarea>
+<label id="msg"></label><br/>
+<input type="reset" value="Reset">
+<input type="submit" value="Submit">
+</form>
+</div>
+<script>
+function validateForm(){
+	var fname = document.forms["myForm"]["fname"].value;
+	var gender = document.forms["myForm"]["gender"].value;
+	var education = ",";
+	var round = document.forms["myForm"]["round"].value;
+	var msg = document.forms["myForm"]["msg"].value;
+	if (fname == ""){
+		document.getElementById('fname').innerHTML = "Enter Your Name";
+		return false;
+		}else if(fname.length<3){
+			document.getElementById('fname').innerHTML = "Enter at least 3 Chracter";
+			return false;
+			if (document.forms["myForm"].ssc.checked){
+				education += document.forms["myForm"]
+				}
+			}
+	}
+</script>
+</body>
+</html>

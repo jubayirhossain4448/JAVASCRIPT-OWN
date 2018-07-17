@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>
+            <form name="myForm" action="formValidation.html" onsubmit="return validateForm()" method="post">
+                Name:<input type="text" name="fname">
+                <label id="fname"></label><br/>
+                
+                Gender:<input type="radio" name="gender" value="Male">Male
+                <input type="radio" name="gender" value="Female">Female
+                <label id="gender"></label><br/>
+                
+                Education:<input type="checkbox" name="education" value="ssc">SSC
+                <input type="checkbox" name="education" value="hsc">HSC
+                <label id="education"></label><br/>
+                
+                Round:<select name="Select A Round">
+                    <option value="Select A Round Name" selected="selected"></option>
+                    <option value="Round 36">Round-36</option>
+                    <option value="Round 37">Round-37</option>
+                    <option value="Round 38">Round-38</option>
+                </select>
+                <label id="round"></label><br/>
+                
+                Message: <textarea rows="5" cols="10"></textarea>
+            </form>
+            
+        </div>
+    </body>
+</html>

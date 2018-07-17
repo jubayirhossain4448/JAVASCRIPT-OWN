@@ -37,9 +37,9 @@ function validateForm(){
 	var gender = document.forms["myForm"] ["gender"].value;
 	var education =  " ";
 	var round = document.forms["myForm"] ["round"].value;
-	var msg = document.forms["fyForm"] ["msg"].value;
+	var msg = document.forms["myForm"] ["msg"].value;
 	if (fname == " "){
-		document.getElementById(' fnamex').innerHTML ="Name must be filled out";
+		document.getElementById('fnamex').innerHTML ="Name must be filled out";
 		return false;
 		} else if (fname.length <3) {
 			document.getElementById('fnamex').innerHTML = "Name length at least 3 Character";
