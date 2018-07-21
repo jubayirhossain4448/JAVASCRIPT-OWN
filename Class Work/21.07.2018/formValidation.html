@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Form Validation</title>
+<style type="text/css">
+label{
+	color:red;
+	padding:5px;
+	
+	}
+
+</style>
+</head>
+
+<body>
+<h1>Form Validation</h1>
+<div style="width:600px; height:500px; margin:3x auto; background-color:#FC9;">
+<form name="myForm">
+Name: <input type="text" name="fname">
+<label id="fname"></label><br/>
+
+Gender:<input type="radio" name="gender" value="Male">Male
+<input type="radio" name="gender" value="Female">Female
+<label id="gender"></label><br/>
+
+Education: <input type="checkbox" name="ssc" value="ssc">SSC
+<input type="checkbox" name="hsc" value="hsc">HSC
+<label id="education"></label><br/>
+
+Round:<select name="round">
+<option value="Select A Round" selected="selected">Select A Round</option>
+<option value="Round 36">Round-36</option>
+<option value="Round 37">Round-37</option>
+<option value="Round 38">Round-38</option>
+
+</select>
+<label id="round"></label><br/>
+Message: <textarea rows="6" cols="10" name="msg"></textarea>
+<label id="msg"></label><br/>
+
+<input type="reset" value="Reset">
+
+</form>
+
+<button onClick="validateForm()">Submit</button>
+<button onClick="closeWindow()">Close Window</button>
+</div>
+
+<script>
+var win;
+function closeWindow(){
+	win.close();
+	}
+	function validateForm(){
+		var fname = document.forms["myForm"]["fname"].value;
+		var gender = document.forms["myForm"]["gender"].value;
+		var education = "";
+		
+		if(document.forms["myForm"].ssc.checked);{}
+			return false;
+			}else if(fname.length<3){
+				document.getElementById('fname')
+				return false;	
+				}
+		
+		var round = document.forms["myForm"]["round"].value;
+		var msg = document.forms["myForm"]["msg"].value;
+		
+		}
+</script>
+</body>
+</html>
