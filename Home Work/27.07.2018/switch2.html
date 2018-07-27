@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>জাভাস্ক্রিপ্ট উদাহরণ</title>
+</head>
+<body>
+
+<p id="test"></p>
+
+<script>
+var day;
+switch (new Date().getDay()) {
+    case 0:
+        day = "রবিবার";
+        break;
+    case 1:
+        day = "  সোমবার";
+        break;
+    case 2:
+        day = "মঙ্গলবার";
+        break;
+    case 3:
+        day = " বুধবার";
+        break;
+    case 4:
+        day = " বৃহস্পতিবার";
+        break;
+    case 5:
+        day = "শুক্রবার";
+        break;
+    case  6:
+        day = "শনিবার";
+}
+document.getElementById("test").innerHTML =  "   আজ " + day;
+</script>
+
+</body>
+</html>

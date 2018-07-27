@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Factorial Number</title>
+</head>
+
+<body>
+<script>
+var n;
+function factorial(n){
+	if(n==0){
+		return 1;
+		}else{
+			return n*factorial(n-1);
+			}
+		
+	}
+var number = prompt("Enter your number", "1");
+alert(factorial(number));
+document.write(number +" " + factorial(number));
+</script>
+</body>
+</html>
