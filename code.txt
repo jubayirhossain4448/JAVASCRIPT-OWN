@@ -1,0 +1,18 @@
+create table database (
+id number (12) primary key,
+name varchar2 (15) unique not null,
+create_date Date default sysdate
+);
+insert into database(id, name) values (1, 'Moly');
+insert into database (id, name) values (2, 'Jubayir');
+insert into database (id, name) values (3, 'Arefin');
+insert into database (id, name) values (4, 'Israt');
+insert into database (id, name) values (5, 'Zakir');
+insert into database (id, name) values (6, 'Rekha');
+insert into database (id, name) values (7, 'Mehdee');
+insert into database (id, name) values (8, 'Ariful');
+insert into database (id, name) values (9, 'Sharmin');
+insert into database (id, name) values (10, 'Masud');
+insert into database (id, name) values (11, 'Shohidul');
+insert into database (id, name) values (12, 'Ruma');
+insert into database (id, name) values (13, 'Julqar nain');
