@@ -1,0 +1,58 @@
+create table test_10(
+id number (10) primary key,
+first_name varchar2(15) not null,
+last_name varchar2(15) not null,
+salary number (10,5)
+);
+insert into test_10 (id, first_name, last_name, salary) values (1, 'Md', 'jubayir', 5000);
+insert into test_10 (id, first_name, last_name, salary) values (2, 'Md', 'Arefin', 55000);
+insert into test_10 (id, first_name, last_name, salary) values (3, 'Md', 'Zakir', 65000);
+insert into test_10 (id, first_name, last_name, salary) values (4, 'Mrs', 'Ruma', 75000);
+insert into test_10 (id, first_name, last_name, salary) values (5, 'Mrs', 'Rekha',87500);
+insert into test_10 (id, first_name, last_name, salary) values (6, 'Mrs', 'Sharmin', 99000);
+insert into test_10 (id, first_name, last_name, salary) values (7, 'Mrs', 'Israt', 10000);
+insert into test_10 (id, first_name, last_name, salary) values (8, 'Mrs', 'Moly', 15000);
+insert into test_10 (id, first_name, last_name, salary) values (9, 'Mr', 'Medee', 15000);
+create table countries(
+id number (5)
+country varchar2(30) default'Bangladesh'
+create_date date default sysdate
+or joining_date date default 29-JUL-18
+);
+create table employees(
+id number(10) primary key,
+emp_name varchar2(10) not null,
+salary number(10,2),
+joining_date date default sysdate
+);
+insert into employees(id,emp_name,salary) values (11,'Azad',5000);
+insert into employees(id,emp_name,salary) values (13,'Mustafiz',50000);
+insert into employees(id,emp_name,salary) values (14,'Musa',5000);
+/////////////////////////
+create table departments(
+dep_id number(5) primary key,
+dep_name varchar2(15)
+);
+
+insert into departments(dep_id,dep_name) values (10, 'jubayir');
+insert into departments(dep_id,dep_name) values (11, 'Arefin');
+insert into departments(dep_id,dep_name) values (13, 'Moly');
+===========================
+create table employees100(
+emp_id number(5) primary key,
+emp_name varchar2(30) not null,
+department_id number(5),
+constraint emp_dept_fk foreign key (department_id) references departments (dep_id)
+);
+insert into employees(emp_id,emp_name,department_id) values (1,'Israt',10)
+=========
+to delete a table
+drop table table name
+
+==========================================
+create table testy(id number(10) primary key not null, name varchar2(20) unique,salary number(10,2));
+======================
+update rows
+update table name
+set department_id = 70
+where employee_id = 110;

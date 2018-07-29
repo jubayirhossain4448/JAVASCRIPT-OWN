@@ -1,0 +1,501 @@
+
+SQL*Plus: Release 11.2.0.2.0 Production on Sun Jul 29 09:00:37 2018
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+SQL> connect
+Enter user-name: sys
+Enter password:
+ERROR:
+ORA-28009: connection as SYS should be as SYSDBA or SYSOPER
+
+
+SQL> connect sys as sysdba
+Enter password:
+Connected.
+SQL> show user
+USER is "SYS"
+SQL> create user jubayir identified by sys;
+
+User created.
+
+SQL> show user
+USER is "SYS"
+SQL> grant dba to jubayir;
+
+Grant succeeded.
+
+SQL> show user
+USER is "SYS"
+SQL> connect
+Enter user-name: jubayir
+Enter password:
+Connected.
+SQL> create table test_10(
+  2  id number (10) primary key,
+  3  first_name varchar2(15) not null,
+  4  last_name varchar2(15) not null,
+  5  salary number (10,5)
+  6  );
+
+Table created.
+
+SQL> insert into test_10 (id, first_name, last_name, salary) values (1, 'Md', 'jubayir', 5000);
+
+1 row created.
+
+SQL> insert into test_10 (id, first_name, last_name, salary) values (2, 'Md', 'Arefin', 55000);
+
+1 row created.
+
+SQL> insert into test_10 (id, first_name, last_name, salary) values (3, 'Md', 'Zakir', 65000);
+
+1 row created.
+
+SQL> insert into test_10 (id, first_name, last_name, salary) values (4, 'Mrs', 'Ruma', 75000);
+
+1 row created.
+
+SQL> insert into test_10 (id, first_name, last_name, salary) values (5, 'Mrs', 'Rekha',875000);
+insert into test_10 (id, first_name, last_name, salary) values (5, 'Mrs', 'Rekha',875000)
+                                                                                  *
+ERROR at line 1:
+ORA-01438: value larger than specified precision allowed for this column
+
+
+SQL> insert into test_10 (id, first_name, last_name, salary) values (5, 'Mrs', 'Rekha',875000);
+insert into test_10 (id, first_name, last_name, salary) values (5, 'Mrs', 'Rekha',875000)
+                                                                                  *
+ERROR at line 1:
+ORA-01438: value larger than specified precision allowed for this column
+
+
+SQL> insert into test_10 (id, first_name, last_name, salary) values (5, 'Mrs', 'Rekha',87500);
+
+1 row created.
+
+SQL> insert into test_10 (id, first_name, last_name, salary) values (6, 'Mrs', 'Sharmin', 99000);
+
+1 row created.
+
+SQL> insert into test_10 (id, first_name, last_name, salary) values (7, 'Mrs', 'Israt', 10000);
+
+1 row created.
+
+SQL> insert into test_10 (id, first_name, last_name, salary) values (8, 'Mrs', 'Moly', 15000);
+
+1 row created.
+
+SQL> insert into test_10 (id, first_name, last_name, salary) values (9, 'Mr', 'Medee', 15000);
+
+1 row created.
+
+SQL> insert into test_10 (id, first_name, last_name, salary) values (9, 'Mr', 'Medee', 15000);
+insert into test_10 (id, first_name, last_name, salary) values (9, 'Mr', 'Medee', 15000)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (JUBAYIR.SYS_C007015) violated
+
+
+SQL> select * from test_10;
+
+        ID FIRST_NAME      LAST_NAME           SALARY
+---------- --------------- --------------- ----------
+         1 Md              jubayir               5000
+         2 Md              Arefin               55000
+         3 Md              Zakir                65000
+         4 Mrs             Ruma                 75000
+         5 Mrs             Rekha                87500
+         6 Mrs             Sharmin              99000
+         7 Mrs             Israt                10000
+         8 Mrs             Moly                 15000
+         9 Mr              Medee                15000
+
+9 rows selected.
+
+SQL> show autocommit;
+autocommit OFF
+SQL> set autocommit on;
+SQL> show autocommit;
+autocommit IMMEDIATE
+SQL> create table employees(
+  2  id number(10) primary key,
+  3  emp_name varchar2(10) not null,
+  4  salary number(10,2),
+  5  joining_date date default sysdate
+  6  );
+
+Table created.
+
+SQL> insert into employees(id,emp_name,salary,joining_date) values (11,'Azad',5000);
+insert into employees(id,emp_name,salary,joining_date) values (11,'Azad',5000)
+                                                       *
+ERROR at line 1:
+ORA-00947: not enough values
+
+
+SQL> insert into employees(id,emp_name,salary) values (11,'Azad',5000);
+
+1 row created.
+
+Commit complete.
+SQL> insert into employees(id,emp_name,salary) values (13,'Mustafiz',50000);
+
+1 row created.
+
+Commit complete.
+SQL> insert into employees(id,emp_name,salary) values (14,'Musa',5000);
+
+1 row created.
+
+Commit complete.
+SQL> select * from employees;
+
+        ID EMP_NAME       SALARY JOINING_D
+---------- ---------- ---------- ---------
+        11 Azad             5000 29-JUL-18
+        13 Mustafiz        50000 29-JUL-18
+        14 Musa             5000 29-JUL-18
+
+SQL>
+SQL> create table departments(
+  2  dep_id number(5) primary key,
+  3  dep_name varchar2(15)
+  4  );
+
+Table created.
+
+SQL>
+SQL> insert into departments(dep_id,dep_name) values (10, 'jubayir');
+
+1 row created.
+
+Commit complete.
+SQL> insert into departments(dep_id,dep_name) values (11, 'Arefin');
+
+1 row created.
+
+Commit complete.
+SQL> insert into departments(dep_id,dep_name) values (13, 'Moly');
+
+1 row created.
+
+Commit complete.
+SQL> select * from departments;
+
+    DEP_ID DEP_NAME
+---------- ---------------
+        10 jubayir
+        11 Arefin
+        13 Moly
+
+SQL> create table employees(
+  2  emp_id number(5) primary key,
+  3  emp_name varchar2(30) not null,
+  4  department_id number(5),
+  5  constraint emp_dept_fk foreign key (department_id) references departments (dep_id)
+  6  );
+create table employees(
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+SQL> show user
+USER is "JUBAYIR"
+SQL> create table employees100(
+  2  emp_id number(5) primary key,
+  3  emp_name varchar2(30) not null,
+  4  department_id number(5),
+  5  constraint emp_dept_fk foreign key (department_id) references departments (dep_id)
+  6  );
+
+Table created.
+
+SQL> select * from employees100;
+
+no rows selected
+
+SQL> insert into employees100(emp_id,emp_name,department_id) values (111,'A.Rahim',10);
+
+1 row created.
+
+Commit complete.
+SQL> select * from employees100;
+
+    EMP_ID EMP_NAME                       DEPARTMENT_ID
+---------- ------------------------------ -------------
+       111 A.Rahim                                   10
+
+SQL> create table testy(id number(10) primary key not null, name varchar2(20) unique,salary number(10,2));
+
+Table created.
+
+SQL> insert into testy (id, name,salary) values (112,'A.Karim');
+insert into testy (id, name,salary) values (112,'A.Karim')
+                                    *
+ERROR at line 1:
+ORA-00947: not enough values
+
+
+SQL> insert into testy (id, name,salary) values (112,'A.Karim'5222);
+insert into testy (id, name,salary) values (112,'A.Karim'5222)
+                                                         *
+ERROR at line 1:
+ORA-00917: missing comma
+
+
+SQL> insert into testy (id, name,salary) values (112,'A.Karim',5222);
+
+1 row created.
+
+Commit complete.
+SQL> select * from testy;
+
+        ID NAME                     SALARY
+---------- -------------------- ----------
+       112 A.Karim                    5222
+
+SQL> insert into testy (id, name,salary) values (113,'A.Baset',5202);
+
+1 row created.
+
+Commit complete.
+SQL> insert into testy (id, name,salary) values (114,'A.Bashar',5902);
+
+1 row created.
+
+Commit complete.
+SQL> select * from testy;
+
+        ID NAME                     SALARY
+---------- -------------------- ----------
+       112 A.Karim                    5222
+       113 A.Baset                    5202
+       114 A.Bashar                   5902
+
+SQL> select * from employees;
+
+        ID EMP_NAME       SALARY JOINING_D
+---------- ---------- ---------- ---------
+        11 Azad             5000 29-JUL-18
+        13 Mustafiz        50000 29-JUL-18
+        14 Musa             5000 29-JUL-18
+
+SQL> select * from employees100;
+
+    EMP_ID EMP_NAME                       DEPARTMENT_ID
+---------- ------------------------------ -------------
+       111 A.Rahim                                   10
+
+SQL> select * from testy;
+
+        ID NAME                     SALARY
+---------- -------------------- ----------
+       112 A.Karim                    5222
+       113 A.Baset                    5202
+       114 A.Bashar                   5902
+
+SQL> alter table testy add mobile_no number(11);
+
+Table altered.
+
+SQL> insert into testy (id,name,salary,mobile_no) values (115,'A.Halim',5000,01918718282);
+
+1 row created.
+
+Commit complete.
+SQL> select * from testy;
+
+        ID NAME                     SALARY  MOBILE_NO
+---------- -------------------- ---------- ----------
+       112 A.Karim                    5222
+       113 A.Baset                    5202
+       114 A.Bashar                   5902
+       115 A.Halim                    5000 1918718282
+
+SQL> update testy set mobile_no=01737216765 where id=112;
+
+1 row updated.
+
+Commit complete.
+SQL> select * from testy;
+
+        ID NAME                     SALARY  MOBILE_NO
+---------- -------------------- ---------- ----------
+       112 A.Karim                    5222 1737216765
+       113 A.Baset                    5202
+       114 A.Bashar                   5902
+       115 A.Halim                    5000 1918718282
+
+SQL> update testy set mobile_no=01787216765 where id=113;
+
+1 row updated.
+
+Commit complete.
+SQL> select * from testy;
+
+        ID NAME                     SALARY  MOBILE_NO
+---------- -------------------- ---------- ----------
+       112 A.Karim                    5222 1737216765
+       113 A.Baset                    5202 1787216765
+       114 A.Bashar                   5902
+       115 A.Halim                    5000 1918718282
+
+SQL> alter table testy add (email varchar2 (25),address varchar2 (35));
+
+Table altered.
+
+SQL> select * from testy;
+
+        ID NAME                     SALARY  MOBILE_NO EMAIL
+---------- -------------------- ---------- ---------- -------------------------
+ADDRESS
+-----------------------------------
+       112 A.Karim                    5222 1737216765
+
+
+       113 A.Baset                    5202 1787216765
+
+
+       114 A.Bashar                   5902
+
+
+
+        ID NAME                     SALARY  MOBILE_NO EMAIL
+---------- -------------------- ---------- ---------- -------------------------
+ADDRESS
+-----------------------------------
+       115 A.Halim                    5000 1918718282
+
+
+
+SQL> update testy set email = karim@gmail.com where id = 112;
+update testy set email = karim@gmail.com where id = 112
+*
+ERROR at line 1:
+ORA-04054: database link GMAIL.COM does not exist
+
+
+SQL> update testy set email = karim where id = 112;
+update testy set email = karim where id = 112
+                         *
+ERROR at line 1:
+ORA-00904: "KARIM": invalid identifier
+
+
+SQL> update testy set email = karim@ where id = 112;
+update testy set email = karim@ where id = 112
+                                *
+ERROR at line 1:
+ORA-01729: database link name expected
+
+
+SQL> update testy set email ='karim@' where id = 112;
+
+1 row updated.
+
+Commit complete.
+SQL> select * from testy;
+
+        ID NAME                     SALARY  MOBILE_NO EMAIL
+---------- -------------------- ---------- ---------- -------------------------
+ADDRESS
+-----------------------------------
+       112 A.Karim                    5222 1737216765 karim@
+
+
+       113 A.Baset                    5202 1787216765
+
+
+       114 A.Bashar                   5902
+
+
+
+        ID NAME                     SALARY  MOBILE_NO EMAIL
+---------- -------------------- ---------- ---------- -------------------------
+ADDRESS
+-----------------------------------
+       115 A.Halim                    5000 1918718282
+
+
+
+SQL> update testy set email ='baset@gmail.com' where id = 113;
+
+1 row updated.
+
+Commit complete.
+SQL> select * from testy;
+
+        ID NAME                     SALARY  MOBILE_NO EMAIL
+---------- -------------------- ---------- ---------- -------------------------
+ADDRESS
+-----------------------------------
+       112 A.Karim                    5222 1737216765 karim@
+
+
+       113 A.Baset                    5202 1787216765 baset@gmail.com
+
+
+       114 A.Bashar                   5902
+
+
+
+        ID NAME                     SALARY  MOBILE_NO EMAIL
+---------- -------------------- ---------- ---------- -------------------------
+ADDRESS
+-----------------------------------
+       115 A.Halim                    5000 1918718282
+
+
+
+SQL> alter table testy modify emp_name varchar2(15) not null;
+alter table testy modify emp_name varchar2(15) not null
+                         *
+ERROR at line 1:
+ORA-00904: "EMP_NAME": invalid identifier
+
+
+SQL> alter table testy modify name varchar2(15) not null;
+
+Table altered.
+
+SQL> describe testy;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL NUMBER(10)
+ NAME                                      NOT NULL VARCHAR2(15)
+ SALARY                                             NUMBER(10,2)
+ MOBILE_NO                                          NUMBER(11)
+ EMAIL                                              VARCHAR2(25)
+ ADDRESS                                            VARCHAR2(35)
+
+SQL> alter table testy rename column address to contact;
+
+Table altered.
+
+SQL> select * from testy;
+
+        ID NAME                SALARY  MOBILE_NO EMAIL
+---------- --------------- ---------- ---------- -------------------------
+CONTACT
+-----------------------------------
+       112 A.Karim               5222 1737216765 karim@
+
+
+       113 A.Baset               5202 1787216765 baset@gmail.com
+
+
+       114 A.Bashar              5902
+
+
+
+        ID NAME                SALARY  MOBILE_NO EMAIL
+---------- --------------- ---------- ---------- -------------------------
+CONTACT
+-----------------------------------
+       115 A.Halim               5000 1918718282
+
+
+
+SQL>
