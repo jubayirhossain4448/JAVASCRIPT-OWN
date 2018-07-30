@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Prime Number</title>
+</head>
+
+<body>
+<div>
+<form name="myForm">
+Name: <input type="text" name="fname"><br/>
+Contact:<input type="text" name="contact"><br/>
+Message:<textarea rows="5" cols="10" name="msg" placeholder="Enter your comment here"></textarea><br/>
+Gender:<input type="radio" name="gender" value="male">Male
+<input type="radio" name="gender" value="Female">Female<br/>
+Courses:<input type="checkbox" name="course" value="js">JS
+ <input type="checkbox" name="course" value="ppt">PPT<br/>
+Location:<select name="location">
+
+<option value="Dhanmondi">Dhanmondi</option>
+<option value="Mirpur">Mirpur</option>
+<option value="Mohammadpur">Mohammadpur</option>
+</select><br/>
+<input type="reset" value="Reset">
+</form>
+<button onClick="validateForm()">Open Window</button>
+<button onClick="closeWindow()">Close Window</button>
+<script>
+var win;
+function closeWindow(){
+	win.close()
+	}
+function validateForm(){
+	var fname = document.forms["myForm"]["fname"].value;
+	var contact = document.forms["myForm"]["contact"].value;
+	var message = document.forms["myForm"]["msg"].value;
+	var gender = document.forms["myForm"]["gender"].value;
+	var course = document.forms["myForm"]["course"].value;
+	var location = document.forms["myForm"]["location"].value;
+	
+	win=window.open("","","width=400");
+	win.document.write("<h1><center>Form Output</center></h1><hr>");
+	
+	win.document.write("Name" +fname+"<br/>");
+	win.document.write("Contact" +contact+"<br/>");
+	win.document.write("Message" +msg+"<br/>");
+	win.document.write("Gender" +gender+"<br/>");
+	win.document.write("Courses" +course+"<br/>");
+	win.document.write("Location" +location+"<br/>");
+	}
+</script>
+</div>
+
+</body>
+</html>

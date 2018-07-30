@@ -1,0 +1,28 @@
+Test-1
+=====================
+create table teacher (
+t_id number(2) primary key not null,
+t_name varchar2(15) not null,
+salary number(7,2) check (salary>50000),
+mobile number(11) unique,
+joining_date date default sysdate
+);
+ insert into teacher(t_id,t_name,salary,mobile) values (1,'Md.Rajaul Islam',50010,01917828282);
+insert into teacher(t_id,t_name,salary,mobile) values (2, 'Md.Rajaul',505000,01918718282);
+insert into teacher(t_id,t_name,salary,mobile) values (3, 'Md.Arefin',50500,01918718272);
+
+
+====================
+create table students(
+id number (2) primary key not null,
+name varchar2 (15) unique,
+education_q varchar2 (10),
+district varchar2 (10),
+teacher_id number(2)
+constraint relation_ship_fk foreign key (t_id)  references teacher (t_id);
+
+);
+insert into students(id,name,education_q,district,teacher_id) valuess (11,'jubayir','SSC','Magura',1);
+insert into students(id,name,education_q,district,teacher_id) values (12,'Arefin','HSC','Magura',2);
+insert into students(id,name,education_q,district,teacher_id) values (13,'Moly','BBA','Magura',3);
+insert into students(id,name,education_q,district,teacher_id) values (14,'Israt','BBA','Magura',4);
