@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Mail Validation</title>
+</head>
+
+<body>
+<script>
+function mailvali(){
+	var c=prompt("Enter your mail");
+	var i=c.indexof('@');
+	var j=c.lastindexof('.');
+	if(i<1 || j<i+2 ||j+2>=c.length){
+		alert("Please Enter your valid e-mail");
+		}
+		else{
+			document.write("your mail is correct");
+			}
+	}
+	mailvali();
+</script>
+</body>
+</html>
