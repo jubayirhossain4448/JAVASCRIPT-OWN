@@ -1,0 +1,9 @@
+What do you mean by FUNCTION And RETURN STATEMENT?
+What do you mean by Cookies?
+What is event and event handler?
+What is Substring and Substr?
+What do you mean by setinterval and settime out?
+What is order by?
+What is group by and type of Group?
+What is object and object (builtin)?
+What is indexOf?

@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Form Validation</title>
+</head>
+
+<body>
+<div>
+<form name="myForm">
+Name: <input type="text" name="fname"><br/>
+Gender: <input type="radio" name="gender" value="male">Male
+<input type="radio" name="gender" value="female">Female<br/>
+
+Round:<select name="round">
+<option value="Select A Round">Select A Round</option>
+<option value="Round 36">Round-36</option>
+<option value="Round 37">Round-37</option>
+<option value="Round 38">Round-38</option>
+</select><br/>
+Message: <textarea rows="15" cols="15" name="msg"></textarea><br/>
+<input type="reset" value="Reset">
+
+</form>
+<button onClick="validateForm()">Open Window</button>
+<button onClick="closeWindow()">Close Window</button>
+
+<script>
+var win;
+function closeWindow(){
+	win.close()
+	}
+	
+function validateForm(){
+	var fname = document.forms["myForm"]["fname"].value;
+	var gender = document.forms["myForm"]["gender"].value;
+	
+	var round = document.forms["myForm"]["round"].value;
+	var msg = document.forms["myForm"]["msg"].value;
+	
+	win=window.open("","","width=400");
+	win.document.write("<h1><center>Form Output</center></h1><hr>");
+	
+	win.document.write("Name" + fname+ "<br/>");
+	win.document.write("Gender" + gender+ "<br/>");
+	
+	win.document.write("round" + round+ "<br/>");
+	win.document.write("Message" + msg+ "<br/>");
+	}
+</script>
+</div>
+</body>
+</html>
