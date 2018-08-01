@@ -1,0 +1,562 @@
+
+SQL*Plus: Release 11.2.0.2.0 Production on Wed Aug 1 08:10:26 2018
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+SQL> connect
+Enter user-name: hr
+Enter password:
+Connected.
+SQL> show autocommit
+autocommit OFF
+SQL> set autocommit on
+SQL> show autocommit
+autocommit IMMEDIATE
+SQL> create or replace view empvu20 as select from employees where department_id=20 with check option constraint empvu20_ck;
+create or replace view empvu20 as select from employees where department_id=20 with check option constraint empvu20_ck
+                                         *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> connect jubayr
+Enter password:
+ERROR:
+ORA-01017: invalid username/password; logon denied
+
+
+Warning: You are no longer connected to ORACLE.
+SQL> connect sys
+Enter password:
+ERROR:
+ORA-28009: connection as SYS should be as SYSDBA or SYSOPER
+
+
+SQL> connect sys as sysdba
+Enter password:
+Connected.
+SQL> show user
+USER is "SYS"
+SQL> connect jubayir
+Enter password:
+Connected.
+SQL> select * from jubayir;
+select * from jubayir
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> create sequence dept_deptid_seq increment by 10 start with 120 maxvalue 9999 nocache nocycle;
+
+Sequence created.
+
+SQL> select * from sequence;
+select * from sequence
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> show user
+USER is "JUBAYIR"
+SQL> create table testy2(id number (10 primary key,name varchar2(25));
+create table testy2(id number (10 primary key,name varchar2(25))
+                                  *
+ERROR at line 1:
+ORA-00907: missing right parenthesis
+
+
+SQL> create table testy2(id number (10) primary key,name varchar2(25));
+
+Table created.
+
+SQL> create sequence abc_seq
+  2  increment by 5
+  3  start with 200
+  4  maxvalue 300
+  5  nocache
+  6  nocache;
+nocache
+*
+ERROR at line 6:
+ORA-02281: duplicate or conflicting CACHE/NOCACHE specifications
+
+
+SQL> create sequence abc_seq
+  2  increment by 5
+  3  start with 200
+  4  maxvalue 300
+  5  nocache
+  6  nocycle;
+
+Sequence created.
+
+SQL> insert into testy2(id,name) values (abc_seq.nextval,'Jubayir');
+
+1 row created.
+
+Commit complete.
+SQL> insert into testy2(id,name) values (abc_seq.nextval,'Jubayir');
+
+1 row created.
+
+Commit complete.
+SQL> insert into testy2(id,name) values (abc_seq.nextval,'Jubayir');
+
+1 row created.
+
+Commit complete.
+SQL> insert into testy2(id,name) values (abc_seq.nextval,'Jubayir');
+
+1 row created.
+
+Commit complete.
+SQL> insert into testy2(id,name) values (abc_seq.nextval,'Jubayir');
+
+1 row created.
+
+Commit complete.
+SQL> select * from testy2;
+
+        ID NAME
+---------- -------------------------
+       200 Jubayir
+       205 Jubayir
+       210 Jubayir
+       215 Jubayir
+       220 Jubayir
+
+SQL> sequence  testy_seq
+SP2-0734: unknown command beginning "sequence  ..." - rest of line ignored.
+SQL> increment by 5
+SP2-0734: unknown command beginning "increment ..." - rest of line ignored.
+SQL> start with 50
+SP2-0310: unable to open file "with.sql"
+SQL> maxvalue 80
+SP2-0734: unknown command beginning "maxvalue 8..." - rest of line ignored.
+SQL> nocache
+SP2-0042: unknown command "nocache" - rest of line ignored.
+SQL> create table testy3 (
+  2  id number (3) primary key,
+  3  name varchar2(25) not null,
+  4  mobile number(11)
+  5  );
+
+Table created.
+
+SQL> insert into testy3(id,name,mobile) values (testy_seq.nextval,'Jubayir',01918718282);
+insert into testy3(id,name,mobile) values (testy_seq.nextval,'Jubayir',01918718282)
+                                           *
+ERROR at line 1:
+ORA-02289: sequence does not exist
+
+
+SQL> insert into testy3(id,name,mobile) values (testy3_seq.nextval,'Jubayir',01918718282);
+insert into testy3(id,name,mobile) values (testy3_seq.nextval,'Jubayir',01918718282)
+                                           *
+ERROR at line 1:
+ORA-02289: sequence does not exist
+
+
+SQL> sequence  testy_seq
+SP2-0734: unknown command beginning "sequence  ..." - rest of line ignored.
+SQL> increment by 5
+SP2-0734: unknown command beginning "increment ..." - rest of line ignored.
+SQL> start with 50
+SP2-0310: unable to open file "with.sql"
+SQL> maxvalue 80
+SP2-0734: unknown command beginning "maxvalue 8..." - rest of line ignored.
+SQL> nocache
+SP2-0042: unknown command "nocache" - rest of line ignored.
+SQL> create sequence  testy_seq
+  2  increment by 5
+  3  start with 50
+  4  maxvalue 80
+  5  nocache
+  6  nocycle;
+
+Sequence created.
+
+SQL> insert into testy3(id,name,mobile) values (testy3_seq.nextval,'Jubayir',01918718282);
+insert into testy3(id,name,mobile) values (testy3_seq.nextval,'Jubayir',01918718282)
+                                           *
+ERROR at line 1:
+ORA-02289: sequence does not exist
+
+
+SQL> insert into testy3(id,name,mobile) values (testy_seq.nextval,'Jubayir',01918718282);
+
+1 row created.
+
+Commit complete.
+SQL> insert into testy3(id,name,mobile) values (testy_seq.nextval,'Arefin',01917718282);
+
+1 row created.
+
+Commit complete.
+SQL> insert into testy3(id,name,mobile) values (testy_seq.nextval,'Ariful',01717718282);
+
+1 row created.
+
+Commit complete.
+SQL> insert into testy3(id,name,mobile) values (testy_seq.nextval,'Moly',01817718282);
+
+1 row created.
+
+Commit complete.
+SQL> insert into testy3(id,name,mobile) values (testy_seq.nextval,'Israt',01817918282);
+
+1 row created.
+
+Commit complete.
+SQL> insert into testy3(id,name,mobile) values (testy_seq.nextval,'Ruma',01817918292);
+
+1 row created.
+
+Commit complete.
+SQL> insert into testy3(id,name,mobile) values (testy_seq.nextval,'Sharmin',01817918292);
+
+1 row created.
+
+Commit complete.
+SQL> insert into testy3(id,name,mobile) values (testy_seq.nextval,'Mehdee',01817918262);
+insert into testy3(id,name,mobile) values (testy_seq.nextval,'Mehdee',01817918262)
+                                           *
+ERROR at line 1:
+ORA-08004: sequence TESTY_SEQ.NEXTVAL exceeds MAXVALUE and cannot be
+instantiated
+
+
+SQL> select testy_seq from user_sequences;
+select testy_seq from user_sequences
+       *
+ERROR at line 1:
+ORA-00904: "TESTY_SEQ": invalid identifier
+
+
+SQL> select sequence_testy_seq from user_sequences;
+select sequence_testy_seq from user_sequences
+       *
+ERROR at line 1:
+ORA-00904: "SEQUENCE_TESTY_SEQ": invalid identifier
+
+
+SQL> describe testy_seq;
+SP2-0381: DESCRIBE sequence is not available
+
+SQL> select sequence_name from user_sequences;
+
+SEQUENCE_NAME
+------------------------------
+ABC_SEQ
+DEPT_DEPTID_SEQ
+TESTY_SEQ
+
+SQL> select * from testy_seq;
+select * from testy_seq
+              *
+ERROR at line 1:
+ORA-02201: sequence not allowed here
+
+
+SQL> describe testy_seq;
+SP2-0381: DESCRIBE sequence is not available
+
+SQL> create user russia identified by russia;
+
+User created.
+
+SQL> grant dba to russia;
+
+Grant succeeded.
+
+SQL> show user
+USER is "JUBAYIR"
+SQL> connect russia
+Enter password:
+Connected.
+SQL> show russia
+SP2-0158: unknown SHOW option "russia"
+SQL> show user
+USER is "RUSSIA"
+SQL> create sequence dept_seq
+  2  increment by 10
+  3  start with 50
+  4  maxvalue 100
+  5  nocache
+  6  nocycle;
+
+Sequence created.
+
+SQL> create sequence emp_seq
+  2  increment by 5
+  3  start with 1
+  4  maxvalue 200
+  5  nocache
+  6  nocycle;
+
+Sequence created.
+
+SQL> create table department(
+  2  id number (3) primary key,
+  3  name varchar2(25) not null
+  4  );
+
+Table created.
+
+SQL> create table employee(
+  2  id number (3) primary key,
+  3  name varchar2(25) not null,
+  4  salary number (7,2) check (salary<50000),
+  5  mobile number(11) unique,
+  6  dept_id number(3),
+  7  constraint dept_id_emp_fk foreign key (dept_id) references department (id);
+constraint dept_id_emp_fk foreign key (dept_id) references department (id)
+                                                                         *
+ERROR at line 7:
+ORA-00907: missing right parenthesis
+
+
+SQL> create table employee(
+  2  id number (3) primary key,
+  3  name varchar2(25) not null,
+  4  salary number (7,2) check (salary<50000),
+  5  mobile number(11) unique,
+  6  dept_id number(3),
+  7  constraint dept_id_emp_fk foreign key (dept_id) references department (dept_id);
+constraint dept_id_emp_fk foreign key (dept_id) references department (dept_id)
+                                                                              *
+ERROR at line 7:
+ORA-00907: missing right parenthesis
+
+
+SQL> create table employee(
+  2  id number (3) primary key,
+  3  name varchar2(25) not null,
+  4  salary number (7,2) check (salary<50000),
+  5  mobile number(11) unique,
+  6  dept_id number(3),
+  7  constraint dept_id_emp_fk foreign key (dept_id) references department (dept_id));
+constraint dept_id_emp_fk foreign key (dept_id) references department (dept_id))
+                                                                       *
+ERROR at line 7:
+ORA-00904: "DEPT_ID": invalid identifier
+
+
+SQL> create table employee(
+  2  id number (3) primary key,
+  3  name varchar2(25) not null,
+  4  salary number (7,2) check (salary<50000),
+  5  mobile number(11) unique,
+  6  dept_id number(3),
+  7  constraint dept_id_emp_fk foreign key (dept_id) references department (id));
+
+Table created.
+
+SQL> insert into department(id,name) values (dept_seq.nextval,'ICT');
+
+1 row created.
+
+Commit complete.
+SQL> insert into department(id,name) values (dept_seq.nextval,'Worker');
+
+1 row created.
+
+Commit complete.
+SQL> select* from department;
+
+        ID NAME
+---------- -------------------------
+        50 ICT
+        60 Worker
+
+SQL> insert into department(id,name) values (dept_seq.nextval,'Dying');
+
+1 row created.
+
+Commit complete.
+SQL> insert into employee(id,name,salary,mobile) values (emp_seq.nextval,'Jubayir',45000,01918718282);
+
+1 row created.
+
+Commit complete.
+SQL> insert into employee(id,name,salary,mobile) values (emp_seq.nextval,'Arefin',46000,01918718282);
+insert into employee(id,name,salary,mobile) values (emp_seq.nextval,'Arefin',46000,01918718282)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (RUSSIA.SYS_C007056) violated
+
+
+SQL> select * from employee;
+
+        ID NAME                          SALARY     MOBILE    DEPT_ID
+---------- ------------------------- ---------- ---------- ----------
+         1 Jubayir                        45000 1918718282
+
+SQL> insert into employee(id,name,salary,mobile,dept_id) values (emp_seq.nextval,'Arefin',46000,0191871828,50);
+
+1 row created.
+
+Commit complete.
+SQL> select * from employee;
+
+        ID NAME                          SALARY     MOBILE    DEPT_ID
+---------- ------------------------- ---------- ---------- ----------
+         1 Jubayir                        45000 1918718282
+        11 Arefin                         46000  191871828         50
+
+SQL> insert into employee(id,name,salary,mobile,dept_id) values (emp_seq.nextval,'Moly',46000,0191871838,60);
+
+1 row created.
+
+Commit complete.
+SQL> select * from employee;
+
+        ID NAME                          SALARY     MOBILE    DEPT_ID
+---------- ------------------------- ---------- ---------- ----------
+         1 Jubayir                        45000 1918718282
+        11 Arefin                         46000  191871828         50
+        16 Moly                           46000  191871838         60
+
+SQL> insert into employee(id,name,salary,mobile,dept_id) values (emp_seq.nextval,'Israt',46000,0191871838,70);
+insert into employee(id,name,salary,mobile,dept_id) values (emp_seq.nextval,'Israt',46000,0191871838,70)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (RUSSIA.SYS_C007056) violated
+
+
+SQL> insert into employee(id,name,salary,mobile,dept_id) values (emp_seq.nextval,'Israt',46000,0191871938,70);
+
+1 row created.
+
+Commit complete.
+SQL> insert into employee(id,name,salary,mobile,dept_id) values (emp_seq.nextval,'Ruma',46000,0191171938,50);
+
+1 row created.
+
+Commit complete.
+SQL> insert into employee(id,name,salary,mobile,dept_id) values (emp_seq.nextval,'Poly',46000,0191181938,60);
+
+1 row created.
+
+Commit complete.
+SQL> select * from department;
+
+        ID NAME
+---------- -------------------------
+        50 ICT
+        60 Worker
+        70 Dying
+
+SQL> select * from employee;
+
+        ID NAME                          SALARY     MOBILE    DEPT_ID
+---------- ------------------------- ---------- ---------- ----------
+         1 Jubayir                        45000 1918718282
+        11 Arefin                         46000  191871828         50
+        16 Moly                           46000  191871838         60
+        26 Israt                          46000  191871938         70
+        31 Ruma                           46000  191171938         50
+        36 Poly                           46000  191181938         60
+
+6 rows selected.
+
+SQL> create view empView as select employee_id,name,department_name from employee where department_id=50;
+create view empView as select employee_id,name,department_name from employee where department_id=50
+                                                                                   *
+ERROR at line 1:
+ORA-00904: "DEPARTMENT_ID": invalid identifier
+
+
+SQL> create view empView as select employee_id,name,department_name from employee where dept_id=50;
+create view empView as select employee_id,name,department_name from employee where dept_id=50
+                                               *
+ERROR at line 1:
+ORA-00904: "DEPARTMENT_NAME": invalid identifier
+
+
+SQL> create view empView as select id,name, dept_id from employee where dept_id=50;
+
+View created.
+
+SQL> select * from empView;
+
+        ID NAME                         DEPT_ID
+---------- ------------------------- ----------
+        11 Arefin                            50
+        31 Ruma                              50
+
+SQL> create view empView as select id,name, dept_id from employee where dept_id=50;
+create view empView as select id,name, dept_id from employee where dept_id=50
+            *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+SQL> select * from empView;
+
+        ID NAME                         DEPT_ID
+---------- ------------------------- ----------
+        11 Arefin                            50
+        31 Ruma                              50
+
+SQL> update department set
+  2  id=50
+  3  where department_id=80;
+where department_id=80
+      *
+ERROR at line 3:
+ORA-00904: "DEPARTMENT_ID": invalid identifier
+
+
+SQL> update department
+  2  set id=50
+  3
+SQL> update department
+  2  set id=football
+  3  where id=50;
+set id=football
+       *
+ERROR at line 2:
+ORA-00904: "FOOTBALL": invalid identifier
+
+
+SQL> update department
+  2  set name='Football'
+  3  where id=50;
+
+1 row updated.
+
+Commit complete.
+SQL> update employee
+  2  set name='Russia'
+  3  where id=31;
+
+1 row updated.
+
+Commit complete.
+SQL> select * from department;
+
+        ID NAME
+---------- -------------------------
+        50 Football
+        60 Worker
+        70 Dying
+
+SQL> select * from employee;
+
+        ID NAME                          SALARY     MOBILE    DEPT_ID
+---------- ------------------------- ---------- ---------- ----------
+         1 Jubayir                        45000 1918718282
+        11 Arefin                         46000  191871828         50
+        16 Moly                           46000  191871838         60
+        26 Israt                          46000  191871938         70
+        31 Russia                         46000  191171938         50
+        36 Poly                           46000  191181938         60
+
+6 rows selected.
+
+SQL> show autocommit
+autocommit IMMEDIATE
+SQL>
