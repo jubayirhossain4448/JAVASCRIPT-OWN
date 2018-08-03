@@ -1,0 +1,224 @@
+
+SQL> show user
+USER is "SYSTEM"
+SQL> create user usa identified by usa
+  2  ;
+
+User created.
+
+SQL> show user
+USER is "SYSTEM"
+SQL> grant dba to usa
+  2  ;
+
+Grant succeeded.
+
+SQL> show user
+USER is "SYSTEM"
+SQL> create table teacher (
+  2  t_id number(2) primary key not null,
+  3  t_name varchar2(15) not null,
+  4  salary number(7,2) check (salary>50000),
+  5  mobile number(11) unique,
+  6  joining_date date default sysdate
+  7  );
+
+Table created.
+
+SQL> create table students(
+  2  id number (2) primary key not null,
+  3  name varchar2 (15) unique,
+  4  education_q varchar2 (10),
+  5  district varchar2 (10),
+  6  teacher_id number(2) not null
+  7  );
+
+Table created.
+
+SQL>
+SQL> insert into teacher(t_id,t_name,salary,mobile) values (1,'Md.Rajaul Islam',50000,01917828282);
+insert into teacher(t_id,t_name,salary,mobile) values (1,'Md.Rajaul Islam',50000,01917828282)
+*
+ERROR at line 1:
+ORA-02290: check constraint (SYSTEM.SYS_C007034) violated
+
+
+SQL>
+SQL> insert into teacher(t_id,t_name,salary,mobile) values (1,'Md.Rajaul Islam',50000,01917828282);
+insert into teacher(t_id,t_name,salary,mobile) values (1,'Md.Rajaul Islam',50000,01917828282)
+*
+ERROR at line 1:
+ORA-02290: check constraint (SYSTEM.SYS_C007034) violated
+
+
+SQL> insert into students(id,name,education_q,district,teacher_id) valuess (11,'jubayir','SSC','Magura',1);
+insert into students(id,name,education_q,district,teacher_id) valuess (11,'jubayir','SSC','Magura',1)
+                                                              *
+ERROR at line 1:
+ORA-00926: missing VALUES keyword
+
+
+SQL> insert into students(id,name,education_q,district,teacher_id) valuess (11,'jubayir','SSC','Magura',1);
+insert into students(id,name,education_q,district,teacher_id) valuess (11,'jubayir','SSC','Magura',1)
+                                                              *
+ERROR at line 1:
+ORA-00926: missing VALUES keyword
+
+
+SQL> insert into teacher(t_id,t_name,salary,mobile) values (1,'Md.Rajaul Islam',50000,01917828282);
+insert into teacher(t_id,t_name,salary,mobile) values (1,'Md.Rajaul Islam',50000,01917828282)
+*
+ERROR at line 1:
+ORA-02290: check constraint (SYSTEM.SYS_C007034) violated
+
+
+SQL> insert into teacher(t_id,t_name,salary,mobile) values (1,'Md.Rajaul Islam',50000,01917828282);
+insert into teacher(t_id,t_name,salary,mobile) values (1,'Md.Rajaul Islam',50000,01917828282)
+*
+ERROR at line 1:
+ORA-02290: check constraint (SYSTEM.SYS_C007034) violated
+
+
+SQL> insert into teacher(t_id,t_name,salary,mobile) values (1,'Md.Rajaul Islam',50010,01917828282);
+
+1 row created.
+
+SQL> insert into teacher(t_id,t_name,salary,mobile) values (2,'Arefin',50000,01917828282);
+insert into teacher(t_id,t_name,salary,mobile) values (2,'Arefin',50000,01917828282)
+*
+ERROR at line 1:
+ORA-02290: check constraint (SYSTEM.SYS_C007034) violated
+
+
+SQL> insert into teacher(t_id,t_name,salary,mobile) values (2,'Arefin',5000000,01917828282);
+insert into teacher(t_id,t_name,salary,mobile) values (2,'Arefin',5000000,01917828282)
+                                                                  *
+ERROR at line 1:
+ORA-01438: value larger than specified precision allowed for this column
+
+
+SQL> insert into teacher(t_id,t_name,salary,mobile) values (2,'Arefin',50000,01917828282);
+insert into teacher(t_id,t_name,salary,mobile) values (2,'Arefin',50000,01917828282)
+*
+ERROR at line 1:
+ORA-02290: check constraint (SYSTEM.SYS_C007034) violated
+
+
+SQL> insert into teacher(t_id,t_name,salary,mobile) values (2,'Arefin',5insert into teacher(t_id,t_name,salary,mobile) values (1,'Md.Rajaul Islam',50010,01917828282);00110,01917828282);
+insert into teacher(t_id,t_name,salary,mobile) values (2,'Arefin',5insert into teacher(t_id,t_name,salary,mobile) values (1,'Md.Rajaul Islam',50010,01917828282);00110,01917828282)
+                                                                   *
+ERROR at line 1:
+ORA-00917: missing comma
+
+
+SQL> insert into teacher(t_id,t_name,salary,mobile) values (2, 'Md.Rajaul',505000,01918718282);
+insert into teacher(t_id,t_name,salary,mobile) values (2, 'Md.Rajaul',505000,01918718282)
+                                                                      *
+ERROR at line 1:
+ORA-01438: value larger than specified precision allowed for this column
+
+
+SQL> insert into teacher(t_id,t_name,salary,mobile) values (2, 'Md.Rajaul',50500,01918718282);
+
+1 row created.
+
+SQL> insert into teacher(t_id,t_name,salary,mobile) values (3, 'Arefin',50300,01918718282);
+insert into teacher(t_id,t_name,salary,mobile) values (3, 'Arefin',50300,01918718282)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SYSTEM.SYS_C007036) violated
+
+
+SQL> insert into teacher(t_id,t_name,salary,mobile) values (3, 'Arefin',50500,01918718282);
+insert into teacher(t_id,t_name,salary,mobile) values (3, 'Arefin',50500,01918718282)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SYSTEM.SYS_C007036) violated
+
+
+SQL> insert into teacher(t_id,t_name,salary,mobile) values (3, 'Arefin',50500,01918718282);
+insert into teacher(t_id,t_name,salary,mobile) values (3, 'Arefin',50500,01918718282)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SYSTEM.SYS_C007036) violated
+
+
+SQL> insert into teacher(t_id,t_name,salary,mobile) values (3, 'Md.Arefin',50500,01918718282);
+insert into teacher(t_id,t_name,salary,mobile) values (3, 'Md.Arefin',50500,01918718282)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SYSTEM.SYS_C007036) violated
+
+
+SQL> insert into teacher(t_id,t_name,salary,mobile) values (3, 'Md.Arefin',50500,01918718272);
+
+1 row created.
+
+SQL> select * from teacher;
+
+      T_ID T_NAME              SALARY     MOBILE JOINING_D
+---------- --------------- ---------- ---------- ---------
+         1 Md.Rajaul Islam      50010 1917828282 30-JUL-18
+         2 Md.Rajaul            50500 1918718282 30-JUL-18
+         3 Md.Arefin            50500 1918718272 30-JUL-18
+
+SQL> insert into students(id,name,education_q,district,teacher_id) valuess (11,'jubayir','SSC','Magura',1);
+insert into students(id,name,education_q,district,teacher_id) valuess (11,'jubayir','SSC','Magura',1)
+                                                              *
+ERROR at line 1:
+ORA-00926: missing VALUES keyword
+
+
+SQL> insert into students(id,name,education_q,district,teacher_id) values (11,'jubayir','SSC','Magura',1);
+
+1 row created.
+
+SQL> insert into students(id,name,education_q,district,teacher_id) values (12,'Arefin','HSC','Magura',2);
+
+1 row created.
+
+SQL> insert into students(id,name,education_q,district,teacher_id) values (13,'Moly','BBA','Magura',3);
+
+1 row created.
+
+SQL> insert into students(id,name,education_q,district,teacher_id) values (14,'Israt','BBA','Magura',4);
+
+1 row created.
+
+SQL> insert into students(id,name,education_q,district,teacher_id) values (15,'Zakir','BBA','Magura',3);
+
+1 row created.
+
+SQL> select * from students;
+
+        ID NAME            EDUCATION_ DISTRICT   TEACHER_ID
+---------- --------------- ---------- ---------- ----------
+        11 jubayir         SSC        Magura              1
+        12 Arefin          HSC        Magura              2
+        13 Moly            BBA        Magura              3
+        14 Israt           BBA        Magura              4
+        15 Zakir           BBA        Magura              3
+
+SQL> alter table students modifyteacher_id number(2)
+  2  constraint relation_ship_fk foreign key (t_id)  references teacher (t_id);
+alter table students modifyteacher_id number(2)
+                     *
+ERROR at line 1:
+ORA-01735: invalid ALTER TABLE option
+
+
+SQL> alter table students modify constraint relation_ship_fk foreign key (t_id)  references teacher (t_id);
+alter table students modify constraint relation_ship_fk foreign key (t_id)  references teacher (t_id)
+                                                        *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL> alter table students modify teacher_id number (2) constraint relation_ship_fk foreign key (t_id)  references teacher (t_id);
+alter table students modify teacher_id number (2) constraint relation_ship_fk foreign key (t_id)  references teacher (t_id)
+                                                  *
+ERROR at line 1:
+ORA-02253: constraint specification not allowed here
+
+
+SQL>

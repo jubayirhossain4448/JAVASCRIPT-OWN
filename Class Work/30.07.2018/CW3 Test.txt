@@ -1,0 +1,33 @@
+create table teacher1 (
+t_id number (2) primary key, 
+t_name varchar2(15)not null, 
+salary number (7,2) check (salary>50000), 
+mobile number(11) unique, 
+joining_date Date default sysdate);
+
+insert into teacher1 (t_id,t_name,salary,mobile) values 
+(1,'Md.Rajaul Islam',60000,'01918718282');
+insert into teacher1 (t_id,t_name,salary,mobile) values
+ (2,'Md.Rajaul Islam',60000,'01918718282');
+insert into teacher1 (t_id,t_name,salary,mobile) values
+(3,'Md.Rajaul',60900,'01918718682');
+
+insert into teacher1 (t_id,t_name,salary,mobile) values
+  (4,'Arefin',70000,'01919718282');
+============================
+create table students1(
+id number (2) primary key,
+name varchar2 (15) unique,
+education_q varchar2 (10),
+district varchar2 (10),
+teacher_id number(2),
+constraint relation_ship_fk foreign key (teacher_id) references teacher1 (t_id));
+
+
+insert into students1(id,name,education_q,district,teacher_id) values (11,'Jubayir','BA','Magura',2);
+insert into students1(id,name,education_q,district,teacher_id) values (12,'Arefin','BBA','Magura',1);
+insert into students1(id,name,education_q,district,teacher_id) values (13,'Moly','BBA','Dhaka',2);
+insert into students1(id,name,education_q,district,teacher_id) values (14,'Israt','BBA','Dhaka',2);
+create View teacherView as select id, name,education_q,district,teacher_id from students1;
+
+select t_id,

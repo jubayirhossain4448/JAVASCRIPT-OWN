@@ -1,0 +1,801 @@
+
+SQL*Plus: Release 11.2.0.2.0 Production on Thu Aug 2 09:06:58 2018
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+SQL> show user
+USER is ""
+SQL> connect hr
+Enter password:
+Connected.
+SQL> connect
+Enter user-name: jubayir
+Enter password:
+Connected.
+SQL> show user
+USER is "JUBAYIR"
+SQL> select table_name from user_tables;
+
+TABLE_NAME
+------------------------------
+TEST_10
+EMPLOYEES
+DEPARTMENTS
+EMPLOYEES100
+TESTY
+TESTY2
+TESTY3
+
+7 rows selected.
+
+SQL> show autocommit
+autocommit OFF
+SQL> set autocimmit on
+SP2-0158: unknown SET option "autocimmit"
+SQL> set autocommit on;
+SQL> show autocommit
+autocommit IMMEDIATE
+SQL> select * from employees100;
+
+    EMP_ID EMP_NAME                       DEPARTMENT_ID
+---------- ------------------------------ -------------
+       111 A.Rahim                                   10
+
+SQL> select * from testy;
+
+        ID NAME                SALARY  MOBILE_NO EMAIL
+---------- --------------- ---------- ---------- -------------------------
+CONTACT
+-----------------------------------
+       112 A.Karim               5222 1737216765 karim@
+
+
+       113 A.Baset               5202 1787216765 baset@gmail.com
+
+
+       114 A.Bashar              5902
+
+
+
+        ID NAME                SALARY  MOBILE_NO EMAIL
+---------- --------------- ---------- ---------- -------------------------
+CONTACT
+-----------------------------------
+       115 A.Halim               5000 1918718282
+
+
+
+SQL> create index emp_name_idx on testy(last_name);
+create index emp_name_idx on testy(last_name)
+                                   *
+ERROR at line 1:
+ORA-00904: "LAST_NAME": invalid identifier
+
+
+SQL> create index emp_name_idx on testy(name);
+create index emp_name_idx on testy(name)
+                                   *
+ERROR at line 1:
+ORA-01408: such column list already indexed
+
+
+SQL> create index emp_name_idx on testy;
+create index emp_name_idx on testy
+                                 *
+ERROR at line 1:
+ORA-00906: missing left parenthesis
+
+
+SQL> create index emp_last_name_idx on employees (last_name);
+create index emp_last_name_idx on employees (last_name)
+                                             *
+ERROR at line 1:
+ORA-00904: "LAST_NAME": invalid identifier
+
+
+SQL> create index emp_last_name_idx on employees (name);
+create index emp_last_name_idx on employees (name)
+                                             *
+ERROR at line 1:
+ORA-00904: "NAME": invalid identifier
+
+
+SQL> select index_name from user_indexes;
+
+INDEX_NAME
+------------------------------
+SYS_C007050
+SYS_C007048
+SYS_C007023
+SYS_C007024
+SYS_C007020
+SYS_C007018
+SYS_C007017
+SYS_C007015
+
+8 rows selected.
+
+SQL> create index name_idx on testy(name);
+create index name_idx on testy(name)
+                               *
+ERROR at line 1:
+ORA-01408: such column list already indexed
+
+
+SQL> create index salary_idx on testy(salary);
+
+Index created.
+
+SQL> select index_name from user_indexes;
+
+INDEX_NAME
+------------------------------
+SYS_C007050
+SYS_C007048
+SYS_C007023
+SYS_C007024
+SALARY_IDX
+SYS_C007020
+SYS_C007018
+SYS_C007017
+SYS_C007015
+
+9 rows selected.
+
+SQL> drop index_salary_index;
+drop index_salary_index
+     *
+ERROR at line 1:
+ORA-00950: invalid DROP option
+
+
+SQL> drop index_salary_idx;
+drop index_salary_idx
+     *
+ERROR at line 1:
+ORA-00950: invalid DROP option
+
+
+SQL> drop index salary_idx;
+
+Index dropped.
+
+SQL> create synonym testy_syn for testy;
+
+Synonym created.
+
+SQL> select * from test_syn;
+select * from test_syn
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> select * from testy;
+
+        ID NAME                SALARY  MOBILE_NO EMAIL
+---------- --------------- ---------- ---------- -------------------------
+CONTACT
+-----------------------------------
+       112 A.Karim               5222 1737216765 karim@
+
+
+       113 A.Baset               5202 1787216765 baset@gmail.com
+
+
+       114 A.Bashar              5902
+
+
+
+        ID NAME                SALARY  MOBILE_NO EMAIL
+---------- --------------- ---------- ---------- -------------------------
+CONTACT
+-----------------------------------
+       115 A.Halim               5000 1918718282
+
+
+
+SQL> select * from testy_syn;
+
+        ID NAME                SALARY  MOBILE_NO EMAIL
+---------- --------------- ---------- ---------- -------------------------
+CONTACT
+-----------------------------------
+       112 A.Karim               5222 1737216765 karim@
+
+
+       113 A.Baset               5202 1787216765 baset@gmail.com
+
+
+       114 A.Bashar              5902
+
+
+
+        ID NAME                SALARY  MOBILE_NO EMAIL
+---------- --------------- ---------- ---------- -------------------------
+CONTACT
+-----------------------------------
+       115 A.Halim               5000 1918718282
+
+
+
+SQL> describe testy;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL NUMBER(10)
+ NAME                                      NOT NULL VARCHAR2(15)
+ SALARY                                             NUMBER(10,2)
+ MOBILE_NO                                          NUMBER(11)
+ EMAIL                                              VARCHAR2(25)
+ CONTACT                                            VARCHAR2(35)
+
+SQL> insert into testy(id,name,salary,mobile_no,email,contact) values (116,'A.Sattar',9000,01987854622,'sat@gmail.com','41/2,circular road');
+
+1 row created.
+
+Commit complete.
+SQL> select * from testy_syn;
+
+        ID NAME                SALARY  MOBILE_NO EMAIL
+---------- --------------- ---------- ---------- -------------------------
+CONTACT
+-----------------------------------
+       112 A.Karim               5222 1737216765 karim@
+
+
+       113 A.Baset               5202 1787216765 baset@gmail.com
+
+
+       114 A.Bashar              5902
+
+
+
+        ID NAME                SALARY  MOBILE_NO EMAIL
+---------- --------------- ---------- ---------- -------------------------
+CONTACT
+-----------------------------------
+       115 A.Halim               5000 1918718282
+
+
+       116 A.Sattar              9000 1987854622 sat@gmail.com
+41/2,circular road
+
+
+SQL> connect system
+Enter password:
+Connected.
+SQL> create user eid identified by eid;
+
+User created.
+
+SQL> grant dba to eid;
+
+Grant succeeded.
+
+SQL> connect eid
+Enter password:
+Connected.
+SQL> show user
+USER is "EID"
+SQL> create table department(
+  2  dep_id number (3) primary key,
+  3  Department_name varchar2(25) not null
+  4  );
+
+Table created.
+
+SQL> create table employee (
+  2  emp_id number (3) primary key,
+  3  emp_name varchar2 (25),
+  4  mobile number (11) unique,
+  5  salary number check(salary<1000),
+  6  joining_date Date default as sysdate,
+  7  country varchar2 (10) default as BD,
+  8  dep_id number(3)
+  9  constraint relation_dep_fk foreign key (dep_id) references department (dep_id)
+ 10  );
+joining_date Date default as sysdate,
+                          *
+ERROR at line 6:
+ORA-00936: missing expression
+
+
+SQL>
+SQL> create table employee (
+  2  emp_id number (3) primary key,
+  3  emp_name varchar2 (25),
+  4  mobile number (11) unique,
+  5  salary number check(salary<1000),
+  6  joining_date Date default sysdate,
+  7  country varchar2 (10) default as BD,
+  8  dep_id number(3)
+  9  constraint relation_dep_fk foreign key (dep_id) references department (dep_id)
+ 10  );
+country varchar2 (10) default as BD,
+                              *
+ERROR at line 7:
+ORA-00936: missing expression
+
+
+SQL> create table employee (
+  2  emp_id number (3) primary key,
+  3  emp_name varchar2 (25),
+  4  mobile number (11) unique,
+  5  salary number check(salary<1000),
+  6  joining_date Date default sysdate,
+  7  country varchar2 (10) default BD,
+  8  dep_id number(3)
+  9  constraint relation_dep_fk foreign key (dep_id) references department (dep_id)
+ 10  );
+country varchar2 (10) default BD,
+                              *
+ERROR at line 7:
+ORA-00984: column not allowed here
+
+
+SQL>
+SQL> create table employee (
+  2  emp_id number (3) primary key,
+  3  emp_name varchar2 (25),
+  4  mobile number (11) unique,
+  5  salary number check(salary<1000),
+  6  joining_date Date default sysdate,
+  7  country varchar2 (10) default (BD),
+  8  dep_id number(3)
+  9  constraint relation_dep_fk foreign key (dep_id) references department (dep_id)
+ 10  );
+country varchar2 (10) default (BD),
+                               *
+ERROR at line 7:
+ORA-00984: column not allowed here
+
+
+SQL> create table employee (
+  2  emp_id number (3) primary key,
+  3  emp_name varchar2 (25),
+  4  mobile number (11) unique,
+  5  salary number check(salary<1000),
+  6  joining_date Date default sysdate,
+  7  country varchar2 (10) default 'BD',
+  8  dep_id number(3)
+  9  constraint relation_dep_fk foreign key (dep_id) references department (dep_id)
+ 10  );
+constraint relation_dep_fk foreign key (dep_id) references department (dep_id)
+*
+ERROR at line 9:
+ORA-02253: constraint specification not allowed here
+
+
+SQL> create table employee (
+  2  emp_id number (3) primary key,
+  3  emp_name varchar2 (25),
+  4  mobile number (11) unique,
+  5  salary number check(salary<1000),
+  6  joining_date Date default sysdate,
+  7  country varchar2 (10) default 'BD',
+  8  dep_id number(3)
+  9  constraint relation_id_dep_fk foreign key (dep_id) references department (dep_id)
+ 10  );
+constraint relation_id_dep_fk foreign key (dep_id) references department (dep_id)
+*
+ERROR at line 9:
+ORA-02253: constraint specification not allowed here
+
+
+SQL> create table employee (
+  2  emp_id number (3) primary key,
+  3  emp_name varchar2 (25),
+  4  mobile number (11) unique,
+  5  salary number check(salary<1000),
+  6  joining_date Date default sysdate,
+  7  country varchar2 (10) default 'BD',
+  8  dep_id number(3)
+  9  constraint dept_id_emp_fk foreign key (dep_id) references department (dep_id)
+ 10  );
+constraint dept_id_emp_fk foreign key (dep_id) references department (dep_id)
+*
+ERROR at line 9:
+ORA-02253: constraint specification not allowed here
+
+
+SQL> create table employee (
+  2  emp_id number (3) primary key,
+  3  emp_name varchar2 (25),
+  4  mobile number (11) unique,
+  5  salary number check(salary<1000),
+  6  joining_date Date default sysdate,
+  7  country varchar2 (10) default 'BD',
+  8  dep_id number(3),
+  9  constraint dept_id_emp_fk foreign key (dep_id) references department (dep_id)
+ 10  );
+
+Table created.
+
+SQL> describe table department;
+Usage: DESCRIBE [schema.]object[@db_link]
+SQL> describe department;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DEP_ID                                    NOT NULL NUMBER(3)
+ DEPARTMENT_NAME                           NOT NULL VARCHAR2(25)
+
+SQL> describe employee;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMP_ID                                    NOT NULL NUMBER(3)
+ EMP_NAME                                           VARCHAR2(25)
+ MOBILE                                             NUMBER(11)
+ SALARY                                             NUMBER
+ JOINING_DATE                                       DATE
+ COUNTRY                                            VARCHAR2(10)
+ DEP_ID                                             NUMBER(3)
+
+SQL> create sequence dert_seq
+  2  increment by 10
+  3  start with 1
+  4  maxvalue 100
+  5  nocache
+  6  nocycle;
+
+Sequence created.
+
+SQL> create sequence emp_seq
+  2  increment by 5
+  3  start with 1
+  4  maxvalue 100
+  5  nocache
+  6  nocycle;
+
+Sequence created.
+
+SQL> select * from dert_seq;
+select * from dert_seq
+              *
+ERROR at line 1:
+ORA-02201: sequence not allowed here
+
+
+SQL> select sequence_name from user_sequences;
+
+SEQUENCE_NAME
+------------------------------
+DERT_SEQ
+EMP_SEQ
+
+SQL> select index_name from user_indexes:
+  2
+SQL> select index_name from user_indexes;
+
+INDEX_NAME
+------------------------------
+SYS_C007061
+SYS_C007062
+SYS_C007059
+
+SQL> create index department_name on eid(department_name);
+create index department_name on eid(department_name)
+                                *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> create index department_name on department(department_name);
+
+Index created.
+
+SQL> select department_name from department;
+
+no rows selected
+
+SQL>
+SQL> select department from department_name;
+select department from department_name
+                       *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> drop index department_name;
+
+Index dropped.
+
+SQL> create index department_name on department(department_name);
+
+Index created.
+
+SQL> describe department;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DEP_ID                                    NOT NULL NUMBER(3)
+ DEPARTMENT_NAME                           NOT NULL VARCHAR2(25)
+
+SQL> insert into department(dep_id,department_name) values (1,'ADMIN');
+
+1 row created.
+
+Commit complete.
+SQL> insert into department(dep_id,department_name) values (2,'SOFTWARE');
+
+1 row created.
+
+Commit complete.
+SQL> insert into department(dep_id,department_name) values (3,'MARKETING');
+
+1 row created.
+
+Commit complete.
+SQL> create view deptView as select dep_id,department_name from department where dep_id=1;
+
+View created.
+
+SQL> select * from deptView;
+
+    DEP_ID DEPARTMENT_NAME
+---------- -------------------------
+         1 ADMIN
+
+SQL> create synonym dept_syn for department;
+
+Synonym created.
+
+SQL> create synonym deptView_syn for department;
+
+Synonym created.
+
+SQL> select * from deptView;
+
+    DEP_ID DEPARTMENT_NAME
+---------- -------------------------
+         1 ADMIN
+
+SQL> select * from dept_syn for department;
+select * from dept_syn for department
+                           *
+ERROR at line 1:
+ORA-00905: missing keyword
+
+
+SQL> select * from dept_syn;
+
+    DEP_ID DEPARTMENT_NAME
+---------- -------------------------
+         1 ADMIN
+         2 SOFTWARE
+         3 MARKETING
+
+SQL> select * from deptView_syn;
+
+    DEP_ID DEPARTMENT_NAME
+---------- -------------------------
+         1 ADMIN
+         2 SOFTWARE
+         3 MARKETING
+
+SQL> select index_name from user_indexes;
+
+INDEX_NAME
+------------------------------
+SYS_C007061
+SYS_C007062
+SYS_C007059
+DEPARTMENT_NAME
+
+SQL> create index emp_name on employee(emp_name);
+
+Index created.
+
+SQL> select * from emp_seq;
+select * from emp_seq
+              *
+ERROR at line 1:
+ORA-02201: sequence not allowed here
+
+
+SQL> select * from sequence emp_seq;
+select * from sequence emp_seq
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> select sequence emp_seq;
+select sequence emp_seq
+                      *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> select emp_seq;
+select emp_seq
+             *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected
+
+
+SQL> select from emp_seq;
+select from emp_seq
+       *
+ERROR at line 1:
+ORA-00936: missing expression
+
+
+SQL> select * from emp_seq;
+select * from emp_seq
+              *
+ERROR at line 1:
+ORA-02201: sequence not allowed here
+
+
+SQL> describe employee;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMP_ID                                    NOT NULL NUMBER(3)
+ EMP_NAME                                           VARCHAR2(25)
+ MOBILE                                             NUMBER(11)
+ SALARY                                             NUMBER
+ JOINING_DATE                                       DATE
+ COUNTRY                                            VARCHAR2(10)
+ DEP_ID                                             NUMBER(3)
+
+SQL> insert into employee (emp_id,emp_name,mobile,salary,dep_id) values (11,'Jubayir',01918718282,2000,2);
+insert into employee (emp_id,emp_name,mobile,salary,dep_id) values (11,'Jubayir',01918718282,2000,2)
+*
+ERROR at line 1:
+ORA-02290: check constraint (EID.SYS_C007060) violated
+
+
+SQL> insert into employee (emp_id,emp_name,mobile,salary,dep_id) values (11,'Jubayir',01918718282,2000,1);
+insert into employee (emp_id,emp_name,mobile,salary,dep_id) values (11,'Jubayir',01918718282,2000,1)
+*
+ERROR at line 1:
+ORA-02290: check constraint (EID.SYS_C007060) violated
+
+
+SQL> describe department;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DEP_ID                                    NOT NULL NUMBER(3)
+ DEPARTMENT_NAME                           NOT NULL VARCHAR2(25)
+
+SQL> select * from department;
+
+    DEP_ID DEPARTMENT_NAME
+---------- -------------------------
+         1 ADMIN
+         2 SOFTWARE
+         3 MARKETING
+
+SQL> insert into employee (emp_id,emp_name,mobile,salary,dep_id) values (11,'Jubayir',01918718282,2000,1);
+insert into employee (emp_id,emp_name,mobile,salary,dep_id) values (11,'Jubayir',01918718282,2000,1)
+*
+ERROR at line 1:
+ORA-02290: check constraint (EID.SYS_C007060) violated
+
+
+SQL> insert into employee (emp_id,emp_name,mobile,salary,dep_id) values (1,'Jubayir',01918718282,2000,1);
+insert into employee (emp_id,emp_name,mobile,salary,dep_id) values (1,'Jubayir',01918718282,2000,1)
+*
+ERROR at line 1:
+ORA-02290: check constraint (EID.SYS_C007060) violated
+
+
+SQL> insert into employee (emp_id,emp_name,mobile,salary,dep_id) values (11,'Jubayir',01918718282,20000,2);
+insert into employee (emp_id,emp_name,mobile,salary,dep_id) values (11,'Jubayir',01918718282,20000,2)
+*
+ERROR at line 1:
+ORA-02290: check constraint (EID.SYS_C007060) violated
+
+
+SQL> insert into employee (emp_id,emp_name,mobile,salary,dep_id) values (11,'Jubayir',01918718282,200,2);
+
+1 row created.
+
+Commit complete.
+SQL> insert into employee (emp_id,emp_name,mobile,salary,dep_id) values (12,'Arefin',01918718282,2600,1);
+insert into employee (emp_id,emp_name,mobile,salary,dep_id) values (12,'Arefin',01918718282,2600,1)
+*
+ERROR at line 1:
+ORA-02290: check constraint (EID.SYS_C007060) violated
+
+
+SQL> insert into employee (emp_id,emp_name,mobile,salary,dep_id) values (12,'Arefin',01918718282,260,1);
+insert into employee (emp_id,emp_name,mobile,salary,dep_id) values (12,'Arefin',01918718282,260,1)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (EID.SYS_C007062) violated
+
+
+SQL> insert into employee (emp_id,emp_name,mobile,salary,dep_id) values (12,'Arefin',01918718262,260,1);
+
+1 row created.
+
+Commit complete.
+SQL> select * from employee;
+
+    EMP_ID EMP_NAME                      MOBILE     SALARY JOINING_D COUNTRY
+---------- ------------------------- ---------- ---------- --------- ----------
+    DEP_ID
+----------
+        11 Jubayir                   1918718282        200 02-AUG-18 BD
+         2
+
+        12 Arefin                    1918718262        260 02-AUG-18 BD
+         1
+
+
+SQL> insert into employee (emp_id,emp_name,mobile,salary,dep_id) values (13,'Mehdee',01918718262,268,3);
+insert into employee (emp_id,emp_name,mobile,salary,dep_id) values (13,'Mehdee',01918718262,268,3)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (EID.SYS_C007062) violated
+
+
+SQL> insert into employee (emp_id,emp_name,mobile,salary,dep_id) values (13,'Mehdee',01918713262,268,3);
+
+1 row created.
+
+Commit complete.
+SQL> insert into employee (emp_id,emp_name,mobile,salary,dep_id) values (14,'Moly',01918717262,268,2);
+
+1 row created.
+
+Commit complete.
+SQL> insert into employee (emp_id,emp_name,mobile,salary,dep_id) values (15,'Sushmi',01918717242,268,1);
+
+1 row created.
+
+Commit complete.
+SQL> insert into employee (emp_id,emp_name,mobile,salary,dep_id) values (16,'Zakir',01918767242,268,2);
+
+1 row created.
+
+Commit complete.
+SQL> select * from employee;
+
+    EMP_ID EMP_NAME                      MOBILE     SALARY JOINING_D COUNTRY
+---------- ------------------------- ---------- ---------- --------- ----------
+    DEP_ID
+----------
+        11 Jubayir                   1918718282        200 02-AUG-18 BD
+         2
+
+        12 Arefin                    1918718262        260 02-AUG-18 BD
+         1
+
+        13 Mehdee                    1918713262        268 02-AUG-18 BD
+         3
+
+
+    EMP_ID EMP_NAME                      MOBILE     SALARY JOINING_D COUNTRY
+---------- ------------------------- ---------- ---------- --------- ----------
+    DEP_ID
+----------
+        14 Moly                      1918717262        268 02-AUG-18 BD
+         2
+
+        15 Sushmi                    1918717242        268 02-AUG-18 BD
+         1
+
+        16 Zakir                     1918767242        268 02-AUG-18 BD
+         2
+
+
+6 rows selected.
+
+SQL> create view empView as select emp_id,emp_name,mobile,salary,joining_date,country,dep_id from employee where emp_id=3;
+
+View created.
+
+SQL> select * from empView;
+
+no rows selected
+
+SQL> create synonym emp_syn for employee;
+
+Synonym created.
+
+SQL> create synonym empView_syn for employee;
+
+Synonym created.
+
+SQL>

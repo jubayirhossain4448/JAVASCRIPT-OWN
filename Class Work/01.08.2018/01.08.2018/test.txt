@@ -1,0 +1,48 @@
+create user russia identified by russia
+grant dba to russia;
+========================
+create sequence dept_seq
+increment by 10
+start with 50
+maxvalue 100
+nocache
+nocycle;
+
+create sequence emp_seq
+increment by 5
+start with 1
+maxvalue 200
+nocache
+nocycle;
+
+create table department(
+id number (3) primary key,
+name varchar2(25) not null
+);
+
+create table employee(
+id number (3) primary key,
+name varchar2(25) not null,
+salary number (7,2) check (salary<50000),
+mobile number(11) unique,
+dept_id number(3),
+constraint dept_id_emp_fk foreign key (dept_id) references department (id));
+
+insert into department(id,name) values (dept_seq.nextval,'ICT');
+insert into department(id,name) values (dept_seq.nextval,'Worker');
+insert into department(id,name) values (dept_seq.nextval,'Dying');
+
+
+==
+insert into employee(id,name,salary,mobile) values (emp_seq.nextval,'Jubayir',45000,01918718282);
+insert into employee(id,name,salary,mobile,dept_id) values (emp_seq.nextval,'Arefin',46000,0191871828,50);
+insert into employee(id,name,salary,mobile,dept_id) values (emp_seq.nextval,'Moly',46000,0191871838,60);
+create view empView as select id,name, dept_id from employee where dept_id=50;
+ update employee
+  set name='Russia'
+  where id=31;
+select * from department;
+update department
+ set name='Football'
+ where id=50;
+

@@ -1,0 +1,12 @@
+To Select Index
+select index_name from user_indexes;
+To create index
+create index salary_idx on testy(salary);
+To drop index
+drop index salary_idx;
+Synonym
+create synonym testy_syn {synonym er name} for test{table name};
+select * from testy;
+
+====================
+create user se

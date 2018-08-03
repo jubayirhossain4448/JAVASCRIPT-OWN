@@ -1,0 +1,67 @@
+=====================
+create sequence dept_deptid_seq 
+increment by 10 
+start with 120 
+maxvalue 9999 
+nocache 
+nocycle;
+=======================
+create table testy2(
+id number (10) primary key,
+name varchar2(25));
+
+create sequence abc_seq
+increment by 5
+start with 200
+maxvalue 300
+nocache
+nocycle;
+insert into testy2(id,name) values (abc_seq.nextval,'Jubayir');
+insert into testy2(id,name) values (abc_seq.nextval,'Jubayir');
+insert into testy2(id,name) values (abc_seq.nextval,'Jubayir');
+insert into testy2(id,name) values (abc_seq.nextval,'Jubayir');
+insert into testy2(id,name) values (abc_seq.nextval,'Jubayir');
+
+insert into testy2(id,name) values (abc_seq.nextval,'Arefin');
+insert into testy2(id,name) values (abc_seq.nextval,'Moly');
+insert into testy2(id,name) values (abc_seq.nextval,'Israt');
+insert into testy2(id,name) values (abc_seq.nextval,'Ruma');
+insert into testy2(id,name) values (abc_seq.nextval,'Sharmin');
+insert into testy2(id,name) values (abc_seq.nextval,'Ariful');
+insert into testy2(id,name) values (abc_seq.nextval,'Zakir');
+insert into testy2(id,name) values (abc_seq.nextval,'Shohidul');
+insert into testy2(id,name) values (abc_seq.nextval,'Masud');
+insert into testy2(id,name) values (abc_seq.nextval,'Yeasin');
+=================================================
+create sequence  testy_seq
+increment by 5
+start with 50 
+maxvalue 80
+nocache
+nocycle;
+
+=========================
+create table testy3 (
+id number (3) primary key,
+name varchar2(25) not null,
+mobile number(11)
+);
+
+insert into testy3(id,name,mobile) values (testy_seq.nextval,'Jubayir',01918718282);
+
+insert into testy3(id,name,mobile) values (testy_seq.nextval,'Arefin',01918718282);
+
+alter sequence testy_seq
+increment by 5
+maxvalue 90
+start with 50
+nocache
+nocycle;
+
+==========================
+To findout tables
+select table_name from user_tabbles;
+To find out views
+select view_name from user_views;
+To find out Sequence
+select sequence_name from user_sequences;
