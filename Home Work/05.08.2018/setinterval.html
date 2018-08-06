@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<head>
+<title>creat a dynamic div</title>
+<style>
+#mydiv{
+border:2px solid green;
+}
+</style>
+</head>
+<body>
+<script>
+var i=0;
+var elem1=document.createElement("div");
+var atts1=document.createAttribute("style");
+
+atts1.value="width:200px;height:3200px;border:1px solid black;background-color:orange;";
+elem1.setAttributeNode(atts1);
+document.body.appendChild(elem1);
+
+var elem2=document.createElement("div");
+var atts2=document.createAttribute("style");
+var atts22=document.createAttribute("id");
+atts22.value="mydiv";
+atts2.value="width:200px;height:300px;background-color:red;position:absolute;top:0px;left:300px;";
+elem2.setAttributeNode(atts2);
+elem2.setAttributeNode(atts22);
+document.body.appendChild(elem2);
+
+function moveIt(){
+var a=window.pageYOffset;
+
+
+if(i > (a+30)){
+
+clearTimeout(p);
+
+}else{
+elem2.style.top=i+"px";
+i=i+1;
+}
+var p=setTimeout(moveIt,200);
+}
+
+window.onscroll=moveIt;
+
+</script>
+</body>
+<html>
