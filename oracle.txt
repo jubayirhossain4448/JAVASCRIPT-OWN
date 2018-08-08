@@ -1,0 +1,43 @@
+SQL> show autocommit
+autocommit IMMEDIATE
+SQL> select * from employee;
+
+    EMP_ID EMP_NAME                      MOBILE     SALARY JOINING_D COUNTRY    
+---------- ------------------------- ---------- ---------- --------- ---------- 
+    DEP_ID                                                                      
+----------                                                                      
+        11 Jubayir                   1918718282        200 02-AUG-18 BD         
+         2                                                                      
+                                                                                
+        12 Arefin                    1918718262        260 02-AUG-18 BD         
+         1                                                                      
+                                                                                
+        13 Mehdee                    1918713262        268 02-AUG-18 BD         
+         3                                                                      
+                                                                                
+
+    EMP_ID EMP_NAME                      MOBILE     SALARY JOINING_D COUNTRY    
+---------- ------------------------- ---------- ---------- --------- ---------- 
+    DEP_ID                                                                      
+----------                                                                      
+        14 Moly                      1918717262        268 02-AUG-18 BD         
+         2                                                                      
+                                                                                
+        15 Sushmi                    1918717242        268 02-AUG-18 BD         
+         1                                                                      
+                                                                                
+        16 Zakir                     1918767242        268 02-AUG-18 BD         
+         2                                                                      
+                                                                                
+
+6 rows selected.
+
+SQL> select * from department;
+
+    DEP_ID DEPARTMENT_NAME                                                      
+---------- -------------------------                                            
+         1 ADMIN                                                                
+         2 SOFTWARE                                                             
+         3 MARKETING                                                            
+
+SQL> spool off;
