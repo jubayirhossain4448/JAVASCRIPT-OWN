@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Form Validation</title>
+</head>
+
+<body>
+<center>
+<div style="width:500px; height:550px; margin:0 auto; background-color:#F9F;">
+<form name="myForm">
+Name: <input type="text" name="fname"><br/>
+Contact: <input type="text" name="contact"><br/>
+Gender: <input type="radio" name="gender" value="male">Male
+	<input type="radio" name="gender" value="female">Female<br/>
+Message: <textarea rows="15" cols="20" name="msg" placeholder="Enter your comment here"></textarea><br/>
+Courses: <input type="checkbox" name="js" value="js">JS
+<input type="checkbox" name="ppt" value="ppt">ppt<br/>
+Location: <select name="location">
+<option value="Dhanmondi">Dhanmondi</option>
+<option value="Banani">Banani</option>
+<option value="Mirpur">Mirpur</option>
+ </select><br/>
+ <input type="reset" value="Reset">
+</form>
+<button onClick="validateForm()">Open Window</button>
+<script>
+var win;
+function validateForm(){
+	var fname = document.forms["myForm"]["fname"].value;
+	var contact = document.forms["myForm"]["contact"].value;
+	var gender = document.forms["myForm"]["gender"].value;
+	var message = document.forms["myForm"]["msg"].value;
+	var courses = "";
+	if(document.forms["myForm"].js.checked){
+		courses += document.forms["myForm"]["js"].value;
+		}
+		if(document.forms["myForm"].ppt.checked){
+		courses += ","  +document.forms["myForm"]["ppt"].value;
+		}
+	var location = document.forms["myForm"]["location"].value;
+	
+	win=window.open("", "", "width=400");
+	win.document.write("<h1><center> Form Output</center></h1><hr/>");
+	
+	win.document.write("Name:  " + fname+ "<br/>");
+	win.document.write("Contact:  " + contact+ "<br/>");
+	win.document.write("Gender  :  " + gender+ "<br/>");
+	win.document.write("Message:  " + message+ "<br/>");
+	win.document.write("Coursees:  " + courses+ "<br/>");
+	win.document.write("Location:  " + location+ "<br/>");
+	}
+</script>
+</div>
+</center>
+</body>
+</html>

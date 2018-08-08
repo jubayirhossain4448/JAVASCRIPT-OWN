@@ -10,7 +10,7 @@ create table employee (
 emp_id number (3) primary key,
 emp_name varchar2 (25),
 mobile number (11) unique,
-salary number check(salary<1000),
+salary number check(salary>1000),
 joining_date Date default sysdate,
 country varchar2 (10) default 'BD',
 dep_id number(3),
